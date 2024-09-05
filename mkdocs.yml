@@ -1,0 +1,62 @@
+site_name: Paraxial.io Documentation
+site_url: https://docs.paraxial.io
+theme:
+  name: material
+nav:
+- Home:
+  - index.md
+  - Ruby:
+    - Getting Started: ruby_start.md
+  - Elixir:
+    - Getting Started: elixir_start.md
+    - GitHub App: elixir_github_app.md
+
+theme:
+  name: material
+  logo: paraxial.png
+  favicon: parax_fav.ico
+  features:
+  - announce.dismiss
+  - content.action.edit
+  - content.action.view
+  - content.code.annotate
+  - content.code.copy
+  - content.tooltips
+  - navigation.footer
+  - navigation.indexes
+  - navigation.sections
+  - navigation.expand
+  - navigation.top
+  - navigation.path
+  - search.highlight
+  - search.suggest
+  - toc.follow
+  - toc.integrate
+  palette:
+    scheme: slate
+    primary: black
+    accent: violet
+  palette:
+    - media: "(prefers-color-scheme)"
+      accent: violet
+      primary: black
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      accent: violet
+      primary: black
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      accent: violet
+      primary: black
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+plugins:
+- search
+
