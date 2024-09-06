@@ -17,4 +17,3 @@ The article [Securing Elixir: The Why and How of Paraxial.io](https://paraxial.i
 Demo Video, Paraxial.io in 1 minute:
 
 [![Paraxial.io in 1 minute](./elixir/assets/demo_vid.png)](https://www.youtube.com/watch?v=BdslgfKSNTE)
-
