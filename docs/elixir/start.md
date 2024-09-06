@@ -1,4 +1,4 @@
-# Getting started with Paraxial.io
+# Getting started with Paraxial.io (Elixir)
 
 This tutorial is a step-by-step guide to setup Paraxial.io with the open source vulnerable Elixir application [Potion Shop.](https://github.com/securityelixir/potion_shop) It will walk through creating an account, installing the agent, and getting results flowing to the backend. Functionality is limited in the free tier, for example you cannot send HTTP traffic to the Paraxial.io backend for analysis.
 
