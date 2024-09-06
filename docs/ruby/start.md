@@ -63,7 +63,7 @@ group :development, :test do
 
 Find your API key in "Site Settings". 
 
-export PARAXIAL_API_KEY=your_key_here
+`export PARAXIAL_API_KEY=your_key_here`
 
 Create `.rubocop.yml` and add:
 
