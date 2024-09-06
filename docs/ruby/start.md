@@ -343,5 +343,63 @@ The Slack App alerts on the following:
 
 ## 7. Bot Defense, Cloud IPs
 
-## 8. Bot Defense, Honeypot Form 
+"Limit the number of login attempts for one IP address to 5 in a 30 second period" is a standard rule for many web applications, and makes sense from the perspective of a site owner dealing with malicious credential stuffing. With the rise of cloud computing, it has become much easier for an attacker to access thousands of different IP addresses, for free, to bypass IP based blocking.
 
+[AWS API Gateway](https://aws.amazon.com/api-gateway/) is a service that handling incoming traffic for a web application, such as HTTP requests, and then triggers some application functionality. The important point for attackers is that the gateway can be pointed at a victim web application, so that when the attacker sends traffic to the gateway, it is proxied through an AWS server, changing the IP address. David Yesland from Rhino Security describes this technique in a blog post, and introduces a Burp Suite extension which can be used to proxy traffic through AWS.
+
+Blog post - [https://rhinosecuritylabs.com/aws/bypassing-ip-based-blocking-aws/](https://rhinosecuritylabs.com/aws/bypassing-ip-based-blocking-aws/)
+
+In your own application, there may be endpoints where you expect bot traffic, for example API endpoints. For a web application with authentication pages that are only intended to be used by human users, blocking traffic from major cloud providers (AWS, GCP, Azure, etc) is an excellent security measure. 
+
+The Paraxial.io Ruby agent stores a radix trie of these IPs locally, meaning the performance impact to check an incoming request is minimal. There is no round-trip to a server, just a fast lookup in the data structure: 
+
+`lib/middleware/ip_filter_middleware.rb`
+
+# /login
+# /signup
+
+```
+require 'paraxial'
+
+class IpFilterMiddleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    request = ActionDispatch::Request.new(env)
+    client_ip = request.remote_ip
+    c = Paraxial.cloud_ip?(client_ip)
+
+    if c and ["/login", "/signup"].include?(request.fullpath)
+      [404, { 'Content-Type' => 'text/plain' }, ['Not Found']]
+    else
+      @app.call(env)
+    end
+  end
+end
+```
+
+<br>
+
+`config/application.rb`
+
+```
+require_relative 'boot'
+require 'rails/all'
+
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+
+module SampleApp
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
+
+    # *** ADD THESE TWO LINES ***
+    Dir[Rails.root.join('lib', 'middleware', '*.{rb}')].each { |file| require file }
+    config.middleware.use IpFilterMiddleware
+  end
+end
+```
