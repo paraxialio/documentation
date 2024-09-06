@@ -9,6 +9,7 @@ nav:
     - Getting Started: ./ruby/start.md
   - Elixir:
     - Getting Started: ./elixir/start.md
+    - Free Tier FAQ: ./elixir/free_tier_faq.md
     - GitHub App: ./elixir/github_app.md
     - User Manual: ./elixir/user_manual.md
     - Cloud IPs: ./elixir/cloud_ips.md
