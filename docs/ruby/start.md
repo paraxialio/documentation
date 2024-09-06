@@ -46,6 +46,10 @@ Gemfile
 
 ## 4. Install Paraxial.io
 
+Paraxial.io for Ruby is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
+
+Current version: `0.6.0`
+
 `Gemfile`
 ```
 ...
@@ -153,3 +157,191 @@ Now run a scan:
 ```
 
 ![start3](./assets/start3.png)
+
+## 5. GitHub App
+
+The Paraxial.io App can be installed in an organization or individual account. 
+
+GitHub Marketplace - [https://github.com/marketplace/paraxial-io](https://github.com/marketplace/paraxial-io)
+
+![github_app](../elixir/assets/gh4.png)
+
+Note the install_id of `45554672`. Your value will be different. Make a note of this value somewhere, you will need it later.
+
+The Paraxial.io Github App is compatible with all CI/CD pipelines. We will be using a Github Action in this example. The following is required:
+
+1. Paraxial.io App Install ID (`45554672` in this example, your value will be different)
+2. Repo Owner
+3. Repo Name
+4. Pull Request number
+
+The dynamic values should be accessible in your CI environment. 
+
+**Put the Paraxial.io API key in GitHub Actions Secrets**
+
+This secret key is found in "Site Settings" in the Paraxial.io web interface. 
+
+![github_app](../elixir/assets/gh5.png)
+![github_app](../elixir/assets/gh6.png)
+
+**Configure the GitHub Action**
+
+Before continuing, answer the following questions:
+
+<br>
+
+Q: What is the name of your repo's primary branch? (It is probably `master` or `main`) 
+
+If your repo's branch is different, replace the "branches" value.
+
+Q: What is your Paraxial.io Github App Install ID? 
+
+See the section above 
+
+<br>
+
+GitHub Action: 
+
+% mkdir -p .github/workflows
+% touch .github/workflows/paraxial.yml
+
+```
+name: Paraxial.io Application Secure
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    env:
+      PARAXIAL_API_KEY: ${{ secrets.PARAXIAL_API_KEY }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1 
+      with:
+        ruby-version: '3.1.2' 
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Get Github Repo Name
+      run: echo "REPO_NAME=$(echo ${{ github.repository }} | cut -d'/' -f2)" >> $GITHUB_ENV
+
+    - name: Paraxial.io Scan, pull request does not exists
+      if: "${{ github.event.number == '' }}"
+      run: |
+        paraxial scan
+
+    - name: Paraxial.io Scan, pull request exists 
+      if: "${{ github.event.number != '' }}"
+      run: |
+        paraxial scan --github_app \
+          --install_id YOUR_VALUE_HERE \
+          --repo_owner ${{ github.repository_owner }} \
+          --repo_name ${{ env.REPO_NAME }} \
+          --pr_number ${{ github.event.number }}
+```
+
+
+Example of a successful run in GitHub actions:
+
+```
+Run paraxial scan --github_app \
+  paraxial scan --github_app \
+    --install_id 45233668 \
+    --repo_owner realcorvus \
+    --repo_name sample_app2 \
+    --pr_number 1
+    
+  shell: /usr/bin/bash -e {0}
+  env:
+    PARAXIAL_API_KEY: ***
+    REPO_NAME: sample_app2
+[Paraxial] Scan starting...
+[Paraxial] .rubocop.yml is valid.
+
+[Paraxial] Scan count: 12
+
+(Gemfile.lock) actionpack: Possible XSS via User Supplied Values to redirect_to - 7.0.5
+- Title: actionpack: Possible XSS via User Supplied Values to redirect_to
+- Installed Version: 7.0.5
+- Fixed Version: ~> 6.1.7.4, >= 7.0.5.1
+
+(findings omitted for space)
+
+(Rubocop) `send` causes remote code execution if called on user input.
+- Path: app/models/user.rb
+- Line: 49
+
+[Paraxial] Scan UUID 5bc90764-4d20-4330-ad94-73246fcf4f51
+[Paraxial] Scan URL https://app.paraxial.io/site/sample_app/scans
+[Paraxial] GitHub hash: {
+  "installation_id": 45233668,
+  "repository_owner": "realcorvus",
+  "repository_name": "sample_app2",
+  "pull_request_number": 1,
+  "scan_uuid": "5bc90764-4d20-4330-ad94-73246fcf4f51",
+  "api_key": "REDACTED"
+}
+[Paraxial] parax_uri response: {"ok":"Comment created successfully!"}
+[Paraxial] https://github.com/realcorvus/sample_app2/pull/1
+```
+
+To use the Paraxial.io GitHub App, open a pull request:
+
+![start4](./assets/start4.png)
+
+## 6. Slack App
+
+You will need permission to approve apps in your Slack workspace. Before installing the app, create a new channel where the alerts will be sent. The channel is named `paraxial_alerts` in this example
+
+Before installing, ensure the Paraxial.io user doing the install is a `site admin` on all sites you want to receive alerts for. If you are only a `site user`, that site will not send Slack notifications. This information is available in "site settings". 
+
+User Settings
+<br>
+
+![slack_app](../elixir/assets/slack0.png)
+
+Add to Slack
+<br>
+
+![slack_app](../elixir/assets/slack1.png)
+
+Successful Install
+<br>
+
+![slack_app](../elixir/assets/slack2.png)
+
+User Settings
+<br>
+
+![slack_app](../elixir/assets/slack3.png)
+
+Test Message Sent Successfully 
+<br>
+
+![slack_app](../elixir/assets/slack4.png)
+
+
+The Slack App alerts on the following:
+
+1. IP Ban events. For example, "An IP sends > 5 requests in 10 seconds to `/users/login`". 
+
+2. Exploit Guard triggered (monitor or block mode). 
+
+## 7. Bot Defense, Cloud IPs
+
+## 8. Bot Defense, Honeypot Form 
+

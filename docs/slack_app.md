@@ -7,19 +7,19 @@ Before installing, ensure the Paraxial.io user doing the install is a `site admi
 ## Install
 
 ### 1. User Settings
-![slack_app](./assets/slack0.png)
+![slack_app](./elixir/assets/slack0.png)
 
 ### 2. Add to Slack
-![slack_app](./assets/slack1.png)
+![slack_app](./elixir/assets/slack1.png)
 
 ### 3. Successful Install
-![slack_app](./assets/slack2.png)
+![slack_app](./elixir/assets/slack2.png)
 
 ### 4. User Settings
-![slack_app](./assets/slack3.png)
+![slack_app](./elixir/assets/slack3.png)
 
 ### 5. Test Message Sent Successfully 
-![slack_app](./assets/slack4.png)
+![slack_app](./elixir/assets/slack4.png)
 
 
 ## Alerts
