@@ -133,47 +133,61 @@ The "Path" field uses a custom language for matching on paths. Examples are:
 Path `*` - Match any path.
 
 Matching:
-- `paraxial.io/new_user`
-- `paraxial.io/site/paraxial.io/settings`
-- `paraxial.io/site/paraxial.io/edit_users/update`
+```
+paraxial.io/new_user
+paraxial.io/site/paraxial.io/settings
+paraxial.io/site/paraxial.io/edit_users/update
+```
 
 ---
 Path `/new_user` - Only matching incoming requests for the route `new_user`.
 
 Matching:
-- `paraxial.io/new_user`
-- `paraxial.io/new_user/`
-- `paraxial.io/new_user//`
-- `paraxial.io/new_user///`
+```
+paraxial.io/new_user
+paraxial.io/new_user/
+paraxial.io/new_user//
+paraxial.io/new_user///
+```
 
 Will not match:
-- `paraxial.io/new_user/a/new_user`
-- `paraxial.io/new_user/!`
-- `paraxial.io/new_user/a`
+```
+paraxial.io/new_user/a/new_user
+paraxial.io/new_user/!
+paraxial.io/new_user/a
+```
 
 ---
 Path `/site/*/settings` - Matching incoming requests for the route `/site/:any_value/settings`.
 
 Matching:
-- `paraxial.io/site/paraxial.io/settings`
-- `paraxial.io/site/paraxial.io/settings/`
-- `paraxial.io/site/customsitehere.com/settings`
-- `paraxial.io/site/customsitehere.com/settings/`
+```
+paraxial.io/site/paraxial.io/settings
+paraxial.io/site/paraxial.io/settings/
+paraxial.io/site/customsitehere.com/settings
+paraxial.io/site/customsitehere.com/settings/
+```
 
 Will not match:
-- `paraxial.io/site/paraxial.io`
-- `paraxial.io/site/paraxial.io/settings/edit_users`
+```
+paraxial.io/site/paraxial.io
+paraxial.io/site/paraxial.io/settings/edit_users
+```
 
 ---
 Path `/site/*/settings/*` - Matching incoming requests for the route `/site/:any_value/settings/:any_value`.
 
 Matching:
-- `paraxial.io/site/paraxial.io/edit_users`
-- `paraxial.io/site/paraxial.io/list_users`
+```
+paraxial.io/site/paraxial.io/edit_users
+paraxial.io/site/paraxial.io/list_users
+```
 
 Will not match:
-- `paraxial.io/site/paraxial.io/edit_users/update`
-- `paraxial.io/site/paraxial.io`
+```
+paraxial.io/site/paraxial.io/edit_users/update
+paraxial.io/site/paraxial.io
+```
 
 #### HTTP Methods
 
