@@ -355,9 +355,6 @@ The Paraxial.io Ruby agent stores a radix trie of these IPs locally, meaning the
 
 `lib/middleware/ip_filter_middleware.rb`
 
-# /login
-# /signup
-
 ```
 require 'paraxial'
 
