@@ -1,6 +1,6 @@
 # Paraxial.io Documentation
 
-Welcome to the Paraxial.io documentation. To begin securing your application, consult the Getting Started guide that matches the language of your application:
+Welcome to the Paraxial.io documentation. To begin securing your application, consult the Getting Started guide that matches your language:
 
 [Getting Started with Paraxial.io for Ruby](./ruby/start.md)
 
