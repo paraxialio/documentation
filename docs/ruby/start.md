@@ -351,7 +351,16 @@ Blog post - [https://rhinosecuritylabs.com/aws/bypassing-ip-based-blocking-aws/]
 
 In your own application, there may be endpoints where you expect bot traffic, for example API endpoints. For a web application with authentication pages that are only intended to be used by human users, blocking traffic from major cloud providers (AWS, GCP, Azure, etc) is an excellent security measure. 
 
-The Paraxial.io Ruby agent stores a radix trie of these IPs locally, meaning the performance impact to check an incoming request is minimal. There is no round-trip to a server, just a fast lookup in the data structure: 
+The Paraxial.io Ruby agent stores a radix trie of these IPs locally, meaning the performance impact to check an incoming request is minimal. There is no round-trip to a server, just a fast lookup in the data structure.
+
+The below middleware will block cloud IP requests to the endpoints:
+
+```
+/login
+/signup
+```
+
+Requests from cloud IPs to all other endpoints will be allowed.
 
 `lib/middleware/ip_filter_middleware.rb`
 
