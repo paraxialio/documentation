@@ -204,7 +204,7 @@ Slack notification:
 
 The following features are also included in the free tier:
 
-[GitHub App - security reviews on each new pull request](./elixir_github_app.md)
+[GitHub App - security reviews on each new pull request](./github_app.md)
 
 [Exploit Guard - block hacking attempts at runtime](./user_manual.md#12-exploit-guard)
 

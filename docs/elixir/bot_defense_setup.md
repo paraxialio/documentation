@@ -137,7 +137,7 @@ When the Paraxial agent starts, the `fetch_cloud_ips` configuration key determin
 
 There are two plugs that make use of this feature, `AssignCloudIP` and `BlockCloudIP`. `AssignCloudIP` will add metadata to the `conn`, but will never block an incoming request. When a conn passes through it, if `conn.remote_ip` matches a cloud provider, the conn's assigns will be updated with that info. This can be viewed in the Paraxial backend, under the site's "HTTP Traffic" page. 
 
-![http](./assets/12http.png) 
+<img src="../assets/12http.png" alt="http" width="550"/>
 
 If you want to block this traffic, use the `BlockCloudIP` plug. For the Havana example, we want to block cloud IPs from accessing routes in the `:browser` pipeline. 
 
@@ -149,7 +149,7 @@ This plug can be used in your `endpoint.ex` or `router.ex` file. If your applica
 
 Now that Paraxial is working in your application, define a rule to prevent credential stuffing. 
 
-![rule](./assets/14rule.png)
+<img src="../assets/14rule.png" alt="rule" width="550"/>
 
 When one IP address sends > 5 POST requests to /users/log_in, in a period of 5 seconds, it will be banned and an alert will be created. 
 
