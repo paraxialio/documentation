@@ -202,8 +202,10 @@ See the section above
 
 GitHub Action: 
 
+```
 % mkdir -p .github/workflows
 % touch .github/workflows/paraxial.yml
+```
 
 ```
 name: Paraxial.io Application Secure
