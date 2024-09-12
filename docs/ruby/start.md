@@ -305,43 +305,90 @@ To use the Paraxial.io GitHub App, open a pull request:
 
 ![start4](./assets/start4.png)
 
-## 6. Slack App
 
-You will need permission to approve apps in your Slack workspace. Before installing the app, create a new channel where the alerts will be sent. The channel is named `paraxial_alerts` in this example
+## 6. Bot Defense, Honeypot Form
 
-Before installing, ensure the Paraxial.io user doing the install is a `site admin` on all sites you want to receive alerts for. If you are only a `site user`, that site will not send Slack notifications. This information is available in "site settings". 
+A simple and effective technique for stopping bots is to render a fake HTML form on your website, not visible to normal users, but only visible to bots. A real user will never submit this form, but bots often automatically submit HTML forms, making this an effective technique for banning malicious clients. With Paraxial.io:
 
-User Settings
+`lib/middleware/ip_filter_middleware.rb`
+
+```
+require 'paraxial'
+
+class IpFilterMiddleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    request = ActionDispatch::Request.new(env)
+    client_ip = request.remote_ip
+
+    if Paraxial.allow_ip?(client_ip)
+      @app.call(env)
+    else
+      [404, { 'Content-Type' => 'text/plain' }, ['Not Found']]
+    end
+  end
+end
+```
+
+`Paraxial.allow_ip?` synchronizes with your backend, meaning any IPs placed on the ban list or allow list through the web interface will be stored locally, and used to determine the result of this function call. 
+
+Now create the fake HTML form:
+
+```
+<%= form_with url: '/customer_info', method: :post, html: { style: "display:none !important" } do |form| %>
+  <%= form.email_field :email, tabindex: -1 %>
+  <%= form.password_field :password, tabindex: -1 %>
+  <%= form.submit "Submit" %>
+<% end %>
+```
+
+The styling is important, this form will not be visible to normal users. 
+
+Create a route for `/customer_info`: 
+
+`config/routes.rb`
+
+```
+Rails.application.routes.draw do
+  post '/customer_info', to: 'static_pages#bot'
+end
+```
+
+Now create a matching controller action:
+
+`app/controllers/static_pages_controller.rb`
+
+```
+class StaticPagesController < ApplicationController
+  ... 
+
+  def bot
+    ip = request.remote_ip
+    Paraxial.ban_ip(ip)
+    render plain: "ok"
+  end
+end
+```
+
+To test if your setup is working, you can use "inspect element" on the page to view the form and delete the styling code, so you can submit it manually:
+
+![start5](./assets/start5.png)
+
 <br>
 
-![slack_app](../elixir/assets/slack0.png)
+![start6](./assets/start6.png)
 
-Add to Slack
-<br>
+After submitting the form, refresh the page and you should be banned:
 
-![slack_app](../elixir/assets/slack1.png)
+![start7](./assets/start7.png)
 
-Successful Install
-<br>
+Then check your site page to view the ban:
 
-![slack_app](../elixir/assets/slack2.png)
+![start8](./assets/start8.png)
 
-User Settings
-<br>
-
-![slack_app](../elixir/assets/slack3.png)
-
-Test Message Sent Successfully 
-<br>
-
-![slack_app](../elixir/assets/slack4.png)
-
-
-The Slack App alerts on the following:
-
-1. IP Ban events. For example, "An IP sends > 5 requests in 10 seconds to `/users/login`". 
-
-2. Exploit Guard triggered (monitor or block mode). 
 
 ## 7. Bot Defense, Cloud IPs
 
