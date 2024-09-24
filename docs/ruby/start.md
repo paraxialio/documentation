@@ -457,3 +457,34 @@ class IpFilterMiddleware
   end
 end
 ```
+
+## 8. Bot Defense, Rate Limiting
+
+Paraxial.io is compatible with your existing Ruby rate limiting, for example rack-attack: https://github.com/rack/rack-attack
+
+`config/initializers/rack_attack.rb`
+
+```
+# Use correct IP when behind a proxy
+class Rack::Attack
+  class Request < ::Rack::Request
+    def remote_ip
+      @remote_ip ||= ActionDispatch::Request.new(env).remote_ip
+    end
+  end
+end
+
+# The bantime of 30 seconds is to save memory, once the ban is persisted to the
+# Paraxial.io backend there is no need to store it in the RackAttack cache. 
+Rack::Attack.blocklist('allow2ban login scrapers') do |req|
+  Rack::Attack::Allow2Ban.filter(req.remote_ip, maxretry: 5, findtime: 10, bantime: 30) do
+    req.path == '/login'
+  end
+end
+
+ActiveSupport::Notifications.subscribe("blocklist.rack_attack") do |name, _start, _finish, _iid, payload|
+  # Valid options for the second argument:
+  # :hour, :day, :week, and :infinity
+  Paraxial.ban_ip_msg(payload[:request].remote_ip, :hour, "> 5 requests to /login in 10 seconds")
+end
+```
