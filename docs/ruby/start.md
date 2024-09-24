@@ -319,18 +319,42 @@ class IpFilterMiddleware
 
   def call(env)
     request = ActionDispatch::Request.new(env)
-    client_ip = request.remote_ip
+    Paraxial.req_allowed?(request)
 
-    if Paraxial.allow_ip?(client_ip)
-      @app.call(env)
+    if env['paraxial.deny']
+      [403, {'Content-Type' => 'text/plain'}, ['Forbidden']]
     else
-      [404, { 'Content-Type' => 'text/plain' }, ['Not Found']]
+      @app.call(env)
     end
   end
 end
 ```
 
-`Paraxial.allow_ip?` synchronizes with your backend, meaning any IPs placed on the ban list or allow list through the web interface will be stored locally, and used to determine the result of this function call. 
+Ensure the middleware is loaded:
+
+`config/application.rb`
+
+```
+require_relative 'boot'
+require 'rails/all'
+
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+
+module SampleApp
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
+
+    # *** ADD THESE TWO LINES ***
+    Dir[Rails.root.join('lib', 'middleware', '*.{rb}')].each { |file| require file }
+    config.middleware.use IpFilterMiddleware
+  end
+end
+```
+
+`Paraxial.req_allowed?` synchronizes with your backend, meaning any IPs placed on the ban list or allow list through the web interface will be stored locally, and used to determine the result of this function call. 
 
 Now create the fake HTML form:
 
@@ -363,8 +387,9 @@ class StaticPagesController < ApplicationController
   ... 
 
   def bot
-    ip = request.remote_ip
-    Paraxial.ban_ip(ip)
+    # The second argument is the ban length, options are:
+    # :hour, :day, :week, and :infinity
+    Paraxial.honeypot_ban(request.remote_ip, :infinity)
     render plain: "ok"
   end
 end
@@ -420,38 +445,13 @@ class IpFilterMiddleware
 
   def call(env)
     request = ActionDispatch::Request.new(env)
-    client_ip = request.remote_ip
-    c = Paraxial.cloud_ip?(client_ip)
+    Paraxial.block_cloud_ip(request, ['/login'])
 
-    if c and ["/login", "/signup"].include?(request.fullpath)
-      [404, { 'Content-Type' => 'text/plain' }, ['Not Found']]
+    if env['paraxial.deny']
+      [403, {'Content-Type' => 'text/plain'}, ['Forbidden']]
     else
       @app.call(env)
     end
-  end
-end
-```
-
-<br>
-
-`config/application.rb`
-
-```
-require_relative 'boot'
-require 'rails/all'
-
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
-
-module SampleApp
-  class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
-
-    # *** ADD THESE TWO LINES ***
-    Dir[Rails.root.join('lib', 'middleware', '*.{rb}')].each { |file| require file }
-    config.middleware.use IpFilterMiddleware
   end
 end
 ```
