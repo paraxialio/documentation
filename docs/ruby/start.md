@@ -465,7 +465,7 @@ Paraxial.io is compatible with your existing Ruby rate limiting, for example rac
 `Gemfile`
 
 ```
-gem 'rack-attack', '~> 6.7'
+gem 'rack-attack', '~> 6.7.0'
 ```
 
 <br>
