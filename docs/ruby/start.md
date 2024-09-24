@@ -460,7 +460,7 @@ end
 
 ## 8. Bot Defense, Rate Limiting
 
-Paraxial.io is compatible with your existing Ruby rate limiting, for example rack-attack: https://github.com/rack/rack-attack
+Paraxial.io is compatible with your existing Ruby rate limiting, for example rack-attack: [https://github.com/rack/rack-attack](https://github.com/rack/rack-attack)
 
 `config/initializers/rack_attack.rb`
 
