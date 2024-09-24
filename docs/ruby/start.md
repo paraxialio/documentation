@@ -250,9 +250,11 @@ jobs:
           --install_id YOUR_VALUE_HERE \
           --repo_owner ${{ github.repository_owner }} \
           --repo_name ${{ env.REPO_NAME }} \
-          --pr_number ${{ github.event.number }}
+          --pr_number ${{ github.event.number }} \
+          --exit-code 
 ```
 
+The flag `--exit-code` will cause the CI/CD run to fail if findings are detected by returning an exit code of 1. This can be used to block pull requests that contain security issues. 
 
 Example of a successful run in GitHub actions:
 
