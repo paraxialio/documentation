@@ -462,6 +462,14 @@ end
 
 Paraxial.io is compatible with your existing Ruby rate limiting, for example rack-attack: [https://github.com/rack/rack-attack](https://github.com/rack/rack-attack)
 
+`Gemfile`
+
+```
+gem 'rack-attack', '~> 6.7'
+```
+
+<br>
+
 `config/initializers/rack_attack.rb`
 
 ```
