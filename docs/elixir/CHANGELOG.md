@@ -2,6 +2,9 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
+## `2.7.8`
+- Add GitLab app.
+
 ## `2.7.7`
 - `:paraxial_url` is no longer required in the config file.
 - Warn when a `.sobelow_skips` file exists, but is not being read because `--sobelow-skip` was not passed.
