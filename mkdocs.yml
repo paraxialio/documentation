@@ -10,6 +10,8 @@ nav:
     - Slack App: slack_app.md
   - Ruby:
     - Getting Started: ruby/start.md
+    - Bot Defense: ruby/bot_defense.md
+    - Code Scans: ruby/code_scans.md
   - Elixir:
     - Getting Started: elixir/start.md
     - GitHub App: elixir/github_app.md
