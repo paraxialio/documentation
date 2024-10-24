@@ -48,7 +48,7 @@ Gemfile
 
 Paraxial.io for Ruby is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
-Current version: `1.0.0`
+Current version: `1.0.2`
 
 `Gemfile`
 ```
