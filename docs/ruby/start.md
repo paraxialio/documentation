@@ -53,7 +53,7 @@ Current version: `1.1.0`
 `Gemfile`
 ```
 ...
-gem 'paraxial', '~> 1.0'
+gem 'paraxial', '~> 1.1.0'
 
 ...
 ```
