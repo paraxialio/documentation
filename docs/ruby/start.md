@@ -48,7 +48,7 @@ Gemfile
 
 Paraxial.io for Ruby is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
-Current version: `1.0.2`
+Current version: `1.1.0`
 
 `Gemfile`
 ```
@@ -62,10 +62,10 @@ Find your API key in "Site Settings".
 
 `export PARAXIAL_API_KEY=your_key_here`
 
-Create `.rubocop.yml` and add:
+Create `.paraxial-rubocop.yml` and add:
 
 ```
-% cat .rubocop.yml 
+% cat .paraxial-rubocop.yml
 require:
 - rubocop-erb
 ```
@@ -86,10 +86,10 @@ Now run a scan:
 
 ```
 % paraxial scan
-[Paraxial] Scan starting...
-[Paraxial] .rubocop.yml is valid.
+[Paraxial] v1.1.0 Scan starting...
+[Paraxial] .paraxial-rubocop.yml is valid, .erb files will be scanned.
 
-[Paraxial] Scan count: 12
+[Paraxial] Scan count: 11
 
 (Gemfile.lock) actionpack: Possible XSS via User Supplied Values to redirect_to - 7.0.5
 - Title: actionpack: Possible XSS via User Supplied Values to redirect_to
@@ -270,8 +270,8 @@ Run paraxial scan --github_app \
   env:
     PARAXIAL_API_KEY: ***
     REPO_NAME: sample_app2
-[Paraxial] Scan starting...
-[Paraxial] .rubocop.yml is valid.
+[Paraxial] v1.1.0 Scan starting...
+[Paraxial] .paraxial-rubocop.yml is valid, .erb files will be scanned.
 
 [Paraxial] Scan count: 12
 
