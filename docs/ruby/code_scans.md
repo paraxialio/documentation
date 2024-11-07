@@ -1,6 +1,11 @@
 # Code Scans
 
-Paraxial.io uses RuboCop for static analysis. If a finding is a false positive, put a comment above the function to mark it as so:
+## Ignoring RuboCop Findings
+
+Paraxial.io uses RuboCop for static analysis. If a finding is a false positive, there are two ways to flag this:
+
+1. Via a code comment
+2. In the `.paraxial-rubocop.yml` file, which follows the normal [RuboCop configuration settings.](https://docs.rubocop.org/rubocop/configuration.html)
 
 ```
 # rubocop:disable Paraxial/SQL
@@ -34,3 +39,39 @@ Some cops are built into RuboCop, and others and written by Paraxial.io. The ful
 - Security/MarshalLoad
 - Security/Open
 - Security/YAMLLoad
+
+If you want to disable a cop on a specific file, or disable it across the entire project, `.paraxial-rubocop.yml` is the best way to do that. 
+
+`.paraxial-rubocop.yml`
+
+```
+require:
+  - rubocop-erb
+
+Paraxial/Constantize:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/users_controller.rb'
+
+Paraxial/HTMLSafe:
+  Enabled: true
+  Exclude:
+    - 'app/views/static_pages/home.html.erb'
+
+Paraxial/Send:
+  Enabled: false
+```
+
+
+## Ignoring Vulnerable Gems
+
+To ignore a vulnerable Gem in the scan results use the `.paraxial.yml` file:
+
+`.paraxial.yml`
+
+```
+ignore-gems:
+- bootstrap-sass
+- puma             
+
+```

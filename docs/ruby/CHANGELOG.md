@@ -2,6 +2,9 @@
 
 The Paraxial.io Ruby Agent is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
+## `1.2.0`
+- Add the `.paraxial.yml` file. Users can define `ignore-gems:` to exclude gems from vulnerability scannings. 
+
 ## `1.1.0`
 - Configure Paraxial.io RuboCop settings with `.paraxial-rubocop.yml` instead of the old `.rubocop.yml`
 
