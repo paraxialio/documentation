@@ -1,5 +1,7 @@
 # ban_ip/3 and PHPAttackPlug
 
+These features require Elixir agent version `2.8.0` or higher.
+
 In a Phoenix app you may want to define a plug with some custom logic, for example if an IP sends a request ending in `.php`, this is a strong signal they are not a real user and should be banned. You could write this plug yourself, or use the one included with Paraxial.io. 
 
 `endpoint.ex`
