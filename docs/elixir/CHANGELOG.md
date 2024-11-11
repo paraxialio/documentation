@@ -2,6 +2,10 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
+## `2.8.0`
+- Add `ban_ip/3` and `Paraxial.PHPAttackPlug`
+- Print the Paraxial agent version on startup and when running `mix paraxial.scan`
+
 ## `2.7.8`
 - Add GitLab app.
 

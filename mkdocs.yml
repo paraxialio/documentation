@@ -19,6 +19,7 @@ nav:
     - GitLab App: elixir/gitlab_app.md
     - User Manual: elixir/user_manual.md
     - Cloud IPs: elixir/cloud_ips.md
+    - ban_ip/3 and PHPAttackPlug: elixir/ban_ip.md
     - Agent Guide: elixir/agent_guide.md
     - App Audit: elixir/app_audit.md
     - Bot Defense: elixir/bot_defense_setup.md
