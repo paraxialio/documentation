@@ -10,6 +10,7 @@ nav:
     - Slack App: slack_app.md
   - Ruby:
     - Getting Started: ruby/start.md
+    - PHPAttackMiddleware: ruby/php_attack.md
     - Bot Defense: ruby/bot_defense.md
     - Code Scans: ruby/code_scans.md
     - Changelog: ruby/CHANGELOG.md

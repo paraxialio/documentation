@@ -2,6 +2,9 @@
 
 The Paraxial.io Ruby Agent is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
+## `1.3.0`
+- Add the `Paraxial::PHPAttackMiddleware`, a pre-defined way to ban malicious clients requesting `.php` routes. 
+
 ## `1.2.0`
 - Add the `.paraxial.yml` file. Users can define `ignore-gems:` to exclude gems from vulnerability scannings. 
 

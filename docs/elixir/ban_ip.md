@@ -69,7 +69,9 @@ defmodule Paraxial.PHPAttackPlug do
 end
 ```
 
-The above code is the source for `plug Paraxial.PHPAttackPlug`. 
+The above code is the source for `plug Paraxial.PHPAttackPlug`. Below is an example of a ban notification from the Paraxial.io Slack App:
+
+<img src="../assets/php_ban.png" alt="rule" width="550"/>
 
 Now you may want to use a custom plug with your own logic in Elixir code. For this, Paraxial.io gives you the function:
 
