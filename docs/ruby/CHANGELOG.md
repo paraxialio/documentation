@@ -3,7 +3,7 @@
 The Paraxial.io Ruby Agent is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
 ## `1.3.1`
-- Improve runtime checks to prevent the agent from starting during rails commands - https://guides.rubyonrails.org/command_line.html#command-line-basics
+- Improve runtime checks to prevent the agent from starting during [rails commands.](https://guides.rubyonrails.org/command_line.html#command-line-basics)
 
 ## `1.3.0`
 - Add the `Paraxial::PHPAttackMiddleware`, a pre-defined way to ban malicious clients requesting `.php` routes. 
