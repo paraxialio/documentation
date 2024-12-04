@@ -99,3 +99,16 @@ Load the web page in your browser. Then, go to your Paraxial.io site:
 <img src="../assets/bot_http.png" alt="gl" width="800"/>
 
 If you can see requests in HTTP Tail, it is working.
+
+
+## Disable HTTP Requests
+
+Bot defense sends an HTTP request to the Paraxial.io backend every few seconds to update the allow and ban lists. If you are not using bot defense and would like to disable the HTTP request, ensure you are on Paraxial Ruby Gem `1.4.1` or later and add the following in your project: 
+
+`config/initializers/paraxial.rb`
+
+```
+Paraxial.configure do |config|
+  config.disable_http_tick = true 
+end
+```
