@@ -101,7 +101,11 @@ Load the web page in your browser. Then, go to your Paraxial.io site:
 If you can see requests in HTTP Tail, it is working.
 
 
-## Disable HTTP Requests
+## Disable HTTP Requests when not using Bot Defense
+
+**WARNING**
+
+If you are using bot defense, there is no need to set `disable_http_tick`. If you set this value to `true`, it will break bot defense. The only reason to set this value is true is if you are **not using bot defense** and want to disable HTTP requests to save bandwidth. 
 
 Bot defense sends an HTTP request to the Paraxial.io backend every few seconds to update the allow and ban lists. If you are not using bot defense and would like to disable the HTTP request, ensure you are on Paraxial Ruby Gem `1.4.1` or later and add the following in your project: 
 
@@ -109,6 +113,7 @@ Bot defense sends an HTTP request to the Paraxial.io backend every few seconds t
 
 ```
 Paraxial.configure do |config|
+  # Only do this if you are NOT using bot defense. It will break IP banning.
   config.disable_http_tick = true 
 end
 ```
