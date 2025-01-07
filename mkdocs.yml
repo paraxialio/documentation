@@ -16,7 +16,8 @@ nav:
     - Code Scans: ruby/code_scans.md
     - Changelog: ruby/CHANGELOG.md
   - Elixir:
-    - Getting Started: elixir/start.md
+    - Why Use Paraxial.io for Elixir: elixir/why.md
+    - Getting Started (Free Tier): elixir/start.md
     - GitHub App: elixir/github_app.md
     - GitLab App: elixir/gitlab_app.md
     - User Manual: elixir/user_manual.md
