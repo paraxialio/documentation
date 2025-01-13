@@ -15,10 +15,11 @@ Q: What are the free tier limits?
 A: 
 
 <ol class="list-decimal pl-10 space-y-2">
-<li>Maximum of 2 Sites.</li>
+<li>Maximum of 1 Site.</li>
 <li>You cannot invite users to a Site.</li>
 <li>HTTP traffic cannot be ingested by the backend.</li>
-<li>Limit of 30 scans per site, per month.</li>
+<li>Limit of 5 scans per site, per month.</li>
+<li>No automated network scanning (daily, weekly)</li>
 </ol>
 
 <br>
