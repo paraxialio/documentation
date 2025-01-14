@@ -2,6 +2,9 @@
 
 The Paraxial.io Ruby Agent is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
+## `1.4.2`
+- Better error handling when user on free tier is rate limited from Code Scans
+
 ## `1.4.1`
 - Add the `config.disable_http_tick = true` option to disable HTTP requests when bot defense is not in use. 
 
