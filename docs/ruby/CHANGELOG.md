@@ -2,6 +2,9 @@
 
 The Paraxial.io Ruby Agent is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
+## `1.4.4`
+- If `.paraxial-rubocop.yml` does not exist when running `paraxial scan`, it will now automatically be created and configured to allow Rubocop to scan erb files. 
+
 ## `1.4.3`
 - Improve cross site request forgery (CSRF) detection in Rubocop.
 
