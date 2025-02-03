@@ -4,10 +4,13 @@ This tutorial is a step-by-step guide to setup Paraxial.io with the open source 
 
 ## Free Tier Limits
 
-1. Maximum of 2 Sites.
-2. You cannot invite users to a Site.
-3. HTTP traffic cannot be ingested by the backend.
-4. Limit of 30 scans per site, per month. 
+<ol class="list-decimal pl-10 space-y-2">
+<li>Maximum of 1 Site.</li>
+<li>You cannot invite users to a Site.</li>
+<li>HTTP traffic cannot be ingested by the backend.</li>
+<li>Limit of 5 scans per site, per month.</li>
+<li>No automated network scanning (daily, weekly)</li>
+</ol>
 
 If you have questions about Paraxial, need enterprise support, or would like to upgrade your plan, email `support@paraxial.io`.
 
