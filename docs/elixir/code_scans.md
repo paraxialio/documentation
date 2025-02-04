@@ -40,7 +40,7 @@ config :paraxial,
 Add the Paraxial.io agent as a config in `mix.exs`:
 
 ```
-{:paraxial, "~> 2.7.7"}
+{:paraxial, "~> 2.8.1"}
 
 ```
 
@@ -104,6 +104,8 @@ Command line flags for `mix paraxial.scan`:
 `--repo_name` - GitHub App, repo name
 
 `--pr_number` - GitHub App, PR number
+
+`--quiet-no-issues` - GitHub App, a GitHub comment is no longer created when a scan returns 0 findings. 
 
 ## Umbrella Applications
 

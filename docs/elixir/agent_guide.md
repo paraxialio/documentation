@@ -67,7 +67,7 @@ This plug sets `x-request-id`, which is required for the Paraxial agent to work 
 ```elixir
 def deps do
   [
-    {:paraxial, "~> 2.7.7"}
+    {:paraxial, "~> 2.8.1"}
   ]
 end
 ```

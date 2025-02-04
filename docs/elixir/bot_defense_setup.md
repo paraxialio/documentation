@@ -44,7 +44,7 @@ Before installing Paraxial, it's recommended you create a new git branch, and th
 
 Add :paraxial to your mix file and run `mix deps.get`.
 
-`{:paraxial, "~> 2.7.7"}`
+`{:paraxial, "~> 2.8.1"}`
 
 ![deps](./assets/4deps.png)
 
