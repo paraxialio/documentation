@@ -40,7 +40,7 @@ config :paraxial,
 Add the Paraxial.io agent as a config in `mix.exs`:
 
 ```
-{:paraxial, "~> 2.8.1"}
+{:paraxial, "~> 2.8.2"}
 
 ```
 

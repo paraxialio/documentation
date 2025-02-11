@@ -49,7 +49,7 @@ Delete it. The Paraxial agent will install Sobelow as a dependency, deleting thi
 Add the following to your `mix.exs` file:
 
 ```elixir
-{:paraxial, "~> 2.8.1"}
+{:paraxial, "~> 2.8.2"}
 ```
 
 Then run: 
