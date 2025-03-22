@@ -2,7 +2,7 @@
 
 ## Introduction 
 
-This is a concise list of steps to install the Paraxial.io agent. It is intended for users who have already read the [agent guide.](./../README.md)
+This is a concise list of steps to install the Paraxial.io agent. It is intended for users who have already read the Getting Started guide. 
 
 ## 1. Mix install
 
@@ -15,9 +15,7 @@ This is a concise list of steps to install the Paraxial.io agent. It is intended
 ```elixir
 config :paraxial,
   paraxial_api_key: System.get_env("PARAXIAL_API_KEY"),  # Required
-  fetch_cloud_ips: true,                                 # Optional, default is false
-  bulk: %{email: %{trusted: 100, untrusted: 3}},         # Optional, see https://hexdocs.pm/paraxial/Paraxial.html#functions
-  trusted_domains: MapSet.new(["paraxial.io", "blackcatprojects.xyz"]) # Optional, see https://hexdocs.pm/paraxial/Paraxial.html#functions
+  fetch_cloud_ips: true,                                 # Optional, set to true if using Paraxial.AssignCloudIP or Paraxial.BlockCloudIP
   exploit_guard: :monitor                                # Optional, set to :monitor or :block 
 ```
 

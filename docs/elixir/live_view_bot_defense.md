@@ -1,6 +1,6 @@
 # LiveView Bot Defense
 
-The Paraxial.io [User Manual](user_manual.html#4-defining-rules) has section `4. Defining Rules`, which covers how to define a rule in the Paraxial.io backend for normal HTTP requests. There are some conditions where this is not enough, for example:
+[Bot Defense - Rules](./user_manual.md) has section `4. Defining Rules`, which covers how to define a rule in the Paraxial.io backend for normal HTTP requests. There are some conditions where this is not enough, for example:
 
 - In a LiveView app, you want to rate limit an action that is triggered via a websocket 
 - In a Phoenix app with multiple endpoints, you want to rate limit requests with a specific `conn.host`. 

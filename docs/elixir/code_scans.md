@@ -23,8 +23,6 @@ mix paraxial.scan
 
 This will run `Sobelow`, `deps.audit`, and `hex.audit` on your application, then upload the results to the Paraxial.io backend:
 
-![scan](./assets/0scan.png)
-
 
 ## 1. Create your site, add the Paraxial.io agent
 
@@ -48,7 +46,7 @@ Add the Paraxial.io agent as a config in `mix.exs`:
 
 Sobelow is installed as a dependency of Paraxial.io. To flag findings as false positives, use code comments or Sobelow hashes. You can read more about how to flag false positives here - https://github.com/nccgroup/sobelow#false-positives 
 
-The article "Elixir Security: Real World Sobelow" also discusses this, see section `5. False Positives` - https://paraxial.io/blog/real-sobelow
+The article "Elixir Security: Real World Sobelow" also discusses this, see section `5. False Positives` - [https://paraxial.io/blog/real-sobelow](https://paraxial.io/blog/real-sobelow)
 
 The `mix paraxial.scan` command will skip findings marked as false positives. 
 

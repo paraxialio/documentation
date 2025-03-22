@@ -1,8 +1,8 @@
-# User Manual 
+# Bot Defense - Rules
 
 ## Introduction 
 
-Welcome to the Paraxial.io user manual. This document focuses on using Paraxial.io to effectively block malicious traffic to a site, and requires you to first install the Paraxial.io agent. 
+This document focuses on using Paraxial.io to effectively block malicious traffic to a site, and requires you to first install the Paraxial.io agent. 
 
 ---
 
