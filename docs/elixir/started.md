@@ -8,8 +8,8 @@ This guide will walk you through setup for Paraxial.io. Most features require a 
 - Asset management - A full inventory of all your Elixir projects
 - Network Scans - Determine which ports are open on your web server
 - Code Scans - Source code (SAST) and dependency (SCA) scanning 
+- GitHub or GitLab App - Get security feedback in your pull request
 - License Scans - Determine which open source licenses are in use
-- GitHub or GitLab App 
 - App Audit - A runtime inventory of all your dependency versions
 - Exploit Guard - runtime detection of deserialization exploits
 
@@ -174,7 +174,7 @@ To get App Audit data for your current site, start your application with a valid
 
 Exploit Guard provides runtime application self protection for your application. To use Exploit Guard, ensure your agent version is >= `2.4.0`.
 
-Exploit Guard has two configurations, `:monitor` or `:block`:
+Exploit Guard has two configurations, `:monitor` or `:block`
 
 `monitor` - No action will be taken, this is the "read only" option.
 
@@ -222,7 +222,20 @@ For more information on how RCE exploits work in Elixir, see the article [Elixir
 
 ## Application Secure End
 
-This concludes the high level overview of Paraxial.io Application Secure. All the features specified above are included in your Application Secure Plan.
+This concludes the high level overview of Paraxial.io Application Secure. All the features specified above are included in your Application Secure Plan. For more specific guidance, consult the relevant documentation page:
+
+Code Scans (`mix paraxial.scan`)
+
+- Full list of all the flags
+- How to ignore findings
+- How to setup with an Umbrella application
+
+<br>
+
+GitHub and GitLab App
+
+- Full setup instructions
+- Example CI/CD template for GitHub Actions
 
 
 ## Bot Defense
