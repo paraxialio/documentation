@@ -56,7 +56,7 @@ config :paraxial,
 
 ## Ingest HTTP Traffic
 
-Before installing Paraxial.io, create a new Git branch, then run `mix test` before making any code changes. If any tests are failing, make a note of that fact before you continue with the install. 
+Create a new Git branch, then run `mix test` before making any code changes. If any tests are failing, make a note of that fact before you continue with the install. 
 
 Run:
 
@@ -70,14 +70,14 @@ Now that you are on a new branch, and have confirmed that your install is workin
 
 `endpoint.ex`
 ```
-  # plug RemoteIp               # This plug is optional, only needed if you are behind a proxy
-  plug Paraxial.AllowedPlug     # Determine if an incoming request is allowed based on ban list
-  plug Paraxial.RecordPlug      # To record requests that do not match the router
+  # plug RemoteIp                  # This plug is optional, only needed if you are behind a proxy
+  plug Paraxial.AllowedPlug        # Determine if an incoming request is allowed based on ban list
+  plug Paraxial.RecordPlug         # To record requests that do not match the router
   plug YourProjectNameWeb.Router   # Change to your own project name
-  plug Paraxial.RecordPlug      # To record requests that did match the router
+  plug Paraxial.RecordPlug         # To record requests that did match the router
 ```
 
-Note that `plug Paraxial.RecordPlug` appearing twice is intentional, 
+Note that `plug Paraxial.RecordPlug` appearing twice is intentional.
 
 Paraxial.io uses the value of `conn.remote_ip` for bot defense. If you are behind a proxy, every HTTP request will have the same IP. This can be fixed via the [RemoteIP](https://github.com/ajvondrak/remote_ip) plug. For example, `plug RemoteIp, headers: ["fly-client-ip"]` is specific to fly.io deployments. Your configuration may be different. 
 
@@ -98,7 +98,7 @@ The requests will show as from localhost:
 
 ![asset](./assets/started/ST2-bot-defense.png)
 
-If your application has a large amount of HTTP traffic (> 100,000 HTTP requests/month), you can restrict sending traffic to only specific routes. For detailed instructions see the Bot Defense documentation page. 
+If your application has a large amount of HTTP traffic (> 100,000 HTTP requests/month), you can restrict sending traffic to only specific routes. For detailed instructions see the [Bot Defense documentation page.](./bot_defense.md#exclude-data-collection-for-specific-routes)
 
 ## Rate Limiting with Rules
 
@@ -112,7 +112,7 @@ You can use a similar route in your own application during testing. Now send a f
 
 ![rule](./assets/started/ST4-rule-event.png)
 
-By default, the Paraxial.io agent does not send user email's to the backend. You can get the history of login attempts for an IP address, instructions are on the full Bot Defense page. 
+By default, the Paraxial.io agent does not send user email's to the backend. You can get the history of login attempts for an IP address, instructions in [the Bot Defense docs.](./bot_defense.md#using-the-paraxial-assigns)
 
 
 ## HTML Honeypot
@@ -299,12 +299,7 @@ config :paraxial,
 
 There are two plugs related to Cloud IP matching:
 
-`Paraxial.AssignCloudIP`
-
-`Paraxial.BlockCloudIP`
-
-
-`Paraxial.AssignCloudIP` If the `remote_ip` of an incoming request matching a cloud provider IP address, this plug will add metadata to the conn via an assigns. For example, if a conn's remote_ip matches aws, this plug will do `assigns(conn, :paraxial_cloud_ip, :aws)`. Use this if your application has branching logic based on if an incoming `conn.remote_ip` is from a rented server.
+`Paraxial.AssignCloudIP` -  If the `remote_ip` of an incoming request matching a cloud provider IP address, this plug will add metadata to the conn via an assigns. For example, if a conn's remote_ip matches aws, this plug will do `assigns(conn, :paraxial_cloud_ip, :aws)`. Use this if your application has branching logic based on if an incoming `conn.remote_ip` is from a rented server.
 
 `Paraxial.BlockCloudIP` - When a conn matches a cloud provider IP, the assign is updated and the conn is halted, with a 404 response sent to the client. Use this to block cloud IPs, for example in your router's authentication pipeline.
 

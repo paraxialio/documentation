@@ -117,7 +117,7 @@ In your application code, determine how a user's login attempt flows through the
 
 Where `email` is the user provided string for a login attempt. 
 
-## 6. (Optional) Send login success true or false
+## (Optional) Send login success true or false
 
 `conn = assign(conn, :paraxial_login_success, false)`
 

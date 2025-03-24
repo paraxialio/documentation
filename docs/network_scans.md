@@ -64,3 +64,9 @@ Q: When do the daily and weekly scans run?
 Daily scans run at 6pm UTC (1pm EST)
 
 Weekly scans run every Tuesday at 7pm UTC (2pm EST)
+
+<br>
+
+Q: What if my domain provider does not allow me to set the TXT record?
+
+Email `support@paraxial.io` for help.

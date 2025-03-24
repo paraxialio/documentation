@@ -131,12 +131,12 @@ Then in your terminal:
 11:49:17.619 [info] [Paraxial] Scan written successfully. UUID bbef9230-8d31-4bba-8148-91358a3207f9
 ```
 
-For information about how to use a Sobelow configuration file, ignore findings, and an FAQ, see the Code Scans documentation. 
+For information about how to use a Sobelow configuration file, ignore findings, and an FAQ, see the [Code Scans documentation.](./code_scans.md)
 
 
 ## GitHub or GitLab App
 
-Developers in your organization can run `mix paraxial.scan` locally to ensure their code does not have any security problems before opening a pull request. This is beneficial is CI/CD takes several minutes to run, while the mix command takes only a few seconds. 
+Developers in your organization can run `mix paraxial.scan` locally to ensure their code does not have any security problems before opening a pull request. This is beneficial because CI/CD takes several minutes to run, while the mix command takes only a few seconds. 
 
 A good practice is to scan each new pull request in your organization for security issues. Paraxial.io has a GitHub and GitLab app which does the following:
 
@@ -238,4 +238,4 @@ This concludes the high level overview of Paraxial.io Application Secure. All th
 
 ## Bot Defense
 
-To get started with bot defense, see the article Getting Started - Bot Defense.
+To get started with bot defense, [click here.](./started_bot.md)
