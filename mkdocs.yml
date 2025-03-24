@@ -14,16 +14,10 @@ nav:
     - Getting Started - Bot Defense: elixir/started_bot.md
     - Why Use Paraxial.io for Elixir: elixir/why.md
     - Code Scans: elixir/code_scans.md
-    - Ignore Dependencies: elixir/ignore_dependencies.md
+    - Bot Defense: elixir/bot_defense.md
     - GitHub App: elixir/github_app.md
     - GitLab App: elixir/gitlab_app.md
-    - Bot Defense - Rules: elixir/user_manual.md
-    - Cloud IPs: elixir/cloud_ips.md
-    - ban_ip/3 and PHPAttackPlug: elixir/ban_ip.md
-    - Agent Guide: elixir/agent_guide.md
-    - Bot Defense: elixir/bot_defense_setup.md
     - Quick Install: elixir/install.md
-    - Live View Bot Defense: elixir/live_view_bot_defense.md
     - Getting Started (Free Tier): elixir/start.md
     - Changelog: elixir/CHANGELOG.md
   - Ruby:

@@ -2,9 +2,8 @@
 
 This guide will walk you through setup for Paraxial.io. Most features require a paid account. If you are on the free tier, email `support@paraxial.io` to request a 2 week free trial. 
 
-## Install Roadmap
+Application Secure
 
-### Application Secure
 - Asset management - A full inventory of all your Elixir projects
 - Network Scans - Determine which ports are open on your web server
 - Code Scans - Source code (SAST) and dependency (SCA) scanning 
@@ -13,7 +12,10 @@ This guide will walk you through setup for Paraxial.io. Most features require a 
 - App Audit - A runtime inventory of all your dependency versions
 - Exploit Guard - runtime detection of deserialization exploits
 
-### Bot Defense
+<br>
+
+Bot Defense
+
 - Ingesting HTTP traffic
 - Rate limiting - Ban IPs that do too many login attempts
 - Honeypots - Ban IPs that submit a fake form
@@ -91,8 +93,9 @@ mix paraxial.scan
 
 This will run `Sobelow`, `deps.audit`, and `hex.audit` on your application, then upload the results to the Paraxial.io backend, so you have a detailed record for compliance audits (SOC 2, HIPAA, ISO). 
 
+<br>
 
-### Install the Paraxial.io Agent in Your Project
+**Install the Paraxial.io Agent in Your Project**
 
 Now it is time to install the Paraxial.io agent. The agent is written in Elixir, and installed as a Hex dependency - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
@@ -141,7 +144,7 @@ A good practice is to scan each new pull request in your organization for securi
 2. Ranks the issues by severity (remote code execution and SQL injection are critical, for example)
 3. Provides developers with detailed instructions on how to verify and fix the problem 
 
-The GitHub/GitLab App runs in CI, so these security checks will be part of your team's everyday workflow. For information about getting setup, see the GitHub and GitLab app documentation. 
+The GitHub/GitLab App runs in CI, so these security checks will be part of your team's everyday workflow. For information about getting setup, see the [GitHub App](./github_app.md) or [GitLab App](./gitlab_app.md) page. 
 
 
 ## License Scans and App Audit 
@@ -222,20 +225,15 @@ For more information on how RCE exploits work in Elixir, see the article [Elixir
 
 ## Application Secure End
 
-This concludes the high level overview of Paraxial.io Application Secure. All the features specified above are included in your Application Secure Plan. For more specific guidance, consult the relevant documentation page:
+This concludes the high level overview of Paraxial.io Application Secure. All the features specified above are included in your Application Secure Plan. Further Reading:
 
-Code Scans (`mix paraxial.scan`)
+[Code Scans Documentation](./code_scans.md)
 
 - Full list of all the flags
-- How to ignore findings
+- How to ignore findings, including dependencies
 - How to setup with an Umbrella application
 
 <br>
-
-GitHub and GitLab App
-
-- Full setup instructions
-- Example CI/CD template for GitHub Actions
 
 
 ## Bot Defense

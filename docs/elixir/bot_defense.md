@@ -1,42 +1,6 @@
-# Bot Defense - Rules
+# Bot Defense
 
-## Introduction 
-
-This document focuses on using Paraxial.io to effectively block malicious traffic to a site, and requires you to first install the Paraxial.io agent. 
-
----
-
-### Index
-
-1. Definitions
-
-2. Creating a New Site
-
-3. The Overview Page
-
-4. Defining Rules
-
-5. Rule Events
-
-6. Allow/Block List
-
-7. HTTP Traffic
-
-8. Site Settings
-
-9. Webhooks
-
-10. Exclude data collection for specific routes
-
-11. Honeypot URLs
-
-12. Exploit Guard 
-
-13. FAQ
-
----
-
-## 1. Definitions
+**Definitions**
 
 **Site** - An Elixir/Phoenix/Plug web application that has the Paraxial agent installed and running. You create a site through the Paraxial web interface, provide the site API key to the Paraxial agent, and a connection is established between the Paraxial server and your application. A site has many rules, allowed IP addresses, banned IP address, and site members.
 
@@ -52,23 +16,8 @@ This document focuses on using Paraxial.io to effectively block malicious traffi
 
 **Site User** - Limited control over a site, for example this user cannot delete the site.
 
-## 2. Creating a New Site
 
-When you first create a site, select an appropriate name and timezone. Navigate to "Site Settings", and note the site API key. You will use it to install the Paraxial agent. 
-
-## 3. The Overview Page
-
-![Overview page](./assets/paraxial_overview.png)
-
-The Paraxial.io overview page shows several interesting facts about your site, including:
-
-- Allowed and blocked requests
-- Total IP addresses
-- Hourly and daily charts
-
-Click the "7 Days" link in the upper right hand corner to switch to the week view. 
-
-## 4. Defining Rules
+## Defining Rules
 Paraxial.io allows users to define "Rules", which are conditions in their web application related to incoming HTTP traffic. The following are examples of rules:
 
 1. `If an IP sends > 5 POST requests to /accounts/new_user in a 20 second period, create an alert.`
@@ -87,8 +36,6 @@ The purpose of defining rules is to prevent a malicious client from sending an e
 - Excessive total requests (scraping, vulnerability scanning)
 - Denial of service attacks
 
-### The Rule Creation Form:
-
 To create a rule, navigate to:
 
 `app.paraxial.io/site/:your_site/new_rule`
@@ -102,7 +49,7 @@ You should see a form that says `Create new rule for :your_site`, with some fiel
 5. `HTTP Methods` - Examples include GET, PUT, POST. Uses a custom pattern matching language detailed below.
 6. `On trigger` - When the rule is matched, you may create an alert, ban the IP, or do both.
 
-### Example Rule Creation
+Example Rule Creation
 
 To create the rule `If an IP sends > 5 POST requests to /accounts/new_user in a 20 second period, create an alert and ban the IP address`, the following form values are used:
 
@@ -118,15 +65,17 @@ To create the rule `If an IP sends > 5 POST requests to /accounts/new_user in a 
 
 6. `On trigger` - `Create an alert and ban the IP`
 
-### Field Details 
+<br>
 
-#### N requests
+**Field Details**
+
+**N requests**
 `N requests` must be > 0 and < 999. 
 
-#### Time period in seconds
+**Time period in seconds**
 `Time period in seconds` must be > 0 and < 86,400.
 
-#### Path
+**Path**
 The "Path" field uses a custom language for matching on paths. Examples are:
 
 ---
@@ -189,7 +138,9 @@ paraxial.io/site/paraxial.io/edit_users/update
 paraxial.io/site/paraxial.io
 ```
 
-#### HTTP Methods
+<br>
+
+**HTTP Methods**
 
 The `HTTP Methods` field takes a list of comma separated HTTP method names, such as: 
 
@@ -207,14 +158,9 @@ To match GET and POST, input: `GET, POST`
 
 To match GET, POST, and PUT, input: `GET, POST, PUT`
 
-#### On Trigger
-There are three options for `On Trigger`:
+<br>
 
-1. Create alert and ban the IP
-2. Only alert, do not ban
-3. Only ban, do not alert
-
-## 5. Rule Events
+**Rule Events**
 The rule events page lists useful information about why an IP address matched a rule. This includes:
 
 1. The rule that was matched
@@ -223,116 +169,16 @@ The rule events page lists useful information about why an IP address matched a 
 4. Associated login attempts from the IP, if `paraxial_login_user_name` and `paraxial_login_success` assigns are in use by your application
 5. The matching HTTP requests, with timestamps  
 
-## 6. Allow/Block List
+<br>
+
+**Allow/Block List**
 The IP block and allow lists support IPv4 and IPv6 prefixes. Examples include:
 
 - `3.5.140.0/22`
 - `2600:1f14:fff:f800::/56`
 
-## 7. HTTP Traffic
-This page displays the most recent 1,000 HTTP events for your site. For each request, you can see:
 
-1. IP Address
-2. HTTP method
-3. Path requested
-4. Status code (200, 404, etc.)
-5. Currently logged in user, if `paraxial_current_user` assigns is used
-6. User Agent
-7. If the request was allowed 
-8. IP Class, set if the IP matches a cloud provider (AWS, GCP, etc.)
-9. Timestamp
-
-## 8. Site Settings
-Current settings are:
-
-1. Change site timezone
-2. Delete site (and all associated site data)
-3. Add/remove users to your site
-4. Configure Webhooks
-
-## 9. Webhooks
-
-To configure webhook URLs:
-
-`Site > Site Settings > Edit Webhooks`
-
-The outbound POST request will be sent on rule events with "alert" configured. That is, "Create an alert and ban the IP" or "Only alert, do not ban". If you need a fast way to test this locally, [nrgok](https://ngrok.com/) is useful. 
-
-Bot Defense Rule Webhook:
-
-```
-{
-    "event_uuid": "a14c3232-cb2a-42e6-834c-01f008481add",
-    "failed_logins": {
-        "attacker2@bots.io": 1,
-        "attacker@bots.io": 1
-    },
-    "http_methods": ".*",
-    "ip_address": "3.5.140.2",
-    "max_requests": 10,
-    "on_trigger": "alert",
-    "path": "^/+users/+log_in/*$",
-    "recorded_request_count": 12,
-    "rule_name": "Too many login",
-    "site_name": "local.house.com",
-    "successful_logins": {
-        "mike@blackcatprojects.xyz": 1
-    },
-    "time_seconds": 30,
-    "timestamp": "2022-09-01 16:46:45-04:00 EDT"
-}
-```
-
-`event_uuid`: Corresponds to the rule event UUID in the GUI
-
-`failed_logins`: List of email addresses, and the number of failed logins for each, for the past 7 days
-
-`http_methods`: The HTTP methods (GET, POST, PUT) that match the defined rule
-
-`ip_address`: The IP of the client that triggered the alert
-
-`max_requests`: The maximum number of requests a client may send before triggering the rule
-
-`on_trigger`: Can be "alert", "ban", or "alert_ban"
-
-`path`: The Phoenix router path for matching requests
-
-`recorded_request_count`: The number of requests the client sent to trigger the alert
-
-`rule_name`: The user-defined name of the rule
-
-`site_name`: The user-defined name of the site the rule event was created for
-
-`successful_logins`: List of email addresses, and number of successful logins for each, for past 7 days
-
-`time_seconds`: The duration of the rule for request matching
-
-`timestamp`: The time the rule was triggered, timezone determined by site settings
-
-
-Exploit Guard Webhook:
-
-```
-{
-  "exploit_uuid": "7915e8eb-6e53-43b7-a67b-1ae7825859d3",
-  "message": "\n13:38:54.294726 <0.908.0> erlang:binary_to_term(<<131,112,.. 0>>)\n",
-  "mode": "block",
-  "site_name": "potionshop",
-  "timestamp": "2023-06-06 13:38:54-04:00 EDT"
-}
-```
-
-`exploit_uuid`: Corresponds to the exploit UUID in the GUI
-
-`message`: Metadata about the function that was created at runtime
-
-`mode`: The mode (monitor or block) of the agent when the exploit data was captured
-
-`site_name`: The user-defined name of the site matching this exploit 
-
-`timestamp`: The time the event was triggered, timezone determined by site settings
-
-## 10. Exclude data collection for specific routes
+## Exclude data collection for specific routes
 
 The pricing on Paraxial.io is by the number of good events sent by the agent to the backend. A good event means one HTTP request sent to your web app. So if 5 users send a total of 50 requests, that's 50 good events. If a spammer sends 5,000 blocked requests, those don't count. By default, the agent sends all HTTP requests to the backend.
 
@@ -400,136 +246,167 @@ Note that you should only define rules for routes that have collection enabled. 
 
 If an attacker is banned due to triggering a rule, the attacker will be banned from all routes in your application, even if collection is not enabled for those routes.
 
-## 11. Honeypot URLs
+## LiveView 
 
-Honeypot URLs are used to create forms that are only visible by bots, not human visitors. Bots will fill in and submit the form, then be banned by Paraxial.io, preventing them from spamming your real forms. 
+- In a LiveView app, you want to rate limit an action that is triggered via a websocket 
+- In a Phoenix app with multiple endpoints, you want to rate limit requests with a specific `conn.host`. 
 
-Note: For honeypot URLs to work you should have already gone through `Bot Defense Setup`. Search your `endpoint.ex` file for `plug Paraxial.AllowedPlug` to confirm you completed that step. 
-
-### 1. Create the URL in your application
-
-Site settings > Honeypot URLs > Edit > Create URL
-
-Looks like:
-
-`https://app.paraxial.io/api/form_submit/e371b5a4-b698-4c60-8072-f024fad67fae`
-
-### 2. Find a controller that does not require auth, create the following action:
+Paraxial.io agent `2.7.6` introduced the `Paraxial.check_rate/6` function for these use cases. For example:
 
 ```
-def honeypot_ban(conn, _params) do
-  url = YOUR_URL_HERE 
-  body = Jason.encode!(%{"bad_ip" => Tuple.to_list(conn.remote_ip)})
-  headers = [{"Content-Type", "application/json"}]
-  Task.start(fn -> HTTPoison.post!(url, body, headers) end)
-  json(conn, %{ok: "system online"})
+def handle_event("login", %{"user" => user_params}, socket) do
+  ip_string = socket.assigns.address |> :inet.ntoa() |> to_string()
+  key = "user-login-#{ip_string}"
+  seconds = 5
+  count = 5
+  ban_length = "hour"
+  ip = socket.assigns.address
+  msg = "`> 5 requests in 5 seconds to login from #{ip_string}`"
+
+  case Paraxial.check_rate(key, seconds, count, ban_length, ip, msg) do
+    {:allow, _} ->
+      do_handle_login(user_params)
+    {:deny, _} -> 
+      conn
+      |> put_resp_content_type("text/html")
+      |> send_resp(429, "Rate limited")
 end
 ```
 
-### 3. In your router, find a scope that goes through the :browser pipeline (for CSRF protection) and does not require auth, for example:
+It is recommended to keep the `seconds` value under 60 to avoid excessive memory usage. In the above example the rate limiting key is the incoming IP address. This could also be changed to include the `conn.host` value, user email, or any value you would like to rate limit on. 
+
+The main benefit of this rate limiting over using an open-source version is the banning of IPs will be tracked on the Paraxial.io backend. You can also receive an alert when the rule is triggered via the Paraxial.io Slack App:
+
+<img src="../assets/lv0.png" alt="lv" width="500"/>
+
+`Paraxial.check_rate(key, seconds, count, ban_length, ip, msg)`
+
+Rate limiter that will also ban the relevant IP address via Paraxial.io.
+
+Returns `{:allow, n} or {:deny, n}`
+
+- `key: String to rate limit on, ex: "login-96.56.162.210", "send-email-michael@paraxial.io"`
+- `seconds: Length of the rate limit rule`
+- `count: Number of times the action can be performed in the seconds time limit`
+- `ban_length: Valid strings are "alert_only", "hour", "day", "week", "infinity"`
+- `ip: Tuple, you can pass conn.remote_ip directly here`
+- `msg: Human-readable string, ex: "> 5 requests in 10 seconds to blackcatprojects.xyz/users/log_in from \#{ip}"`
 
 ```
-  scope "/", ParaxWeb do
-    pipe_through :browser
+ip_string = conn.remote_ip |> :inet.ntoa() |> to_string()
+key = "user-register-get-\#{ip_string}"
+seconds = 5
+count = 5
+ban_length = "hour"
+ip = conn.remote_ip
+msg = "> 5 requests in 10 seconds to \#{conn.host}/users/log_in from \#{ip_string}"
 
-    post "/customer", PageController, :honeypot_ban
-  end
-```
-
-### 4. Create the form, with CSRF protection
-
-Email/password example: 
-
-```
-<%= form_for @conn, Routes.page_path(@conn, :honeypot_ban), [style: "display:none !important"], fn f -> %>
-  <%= text_input f, :email, tabindex: -1 %>
-  <%= text_input f, :password, tabindex: -1 %>
-  <%= submit "Register" %>
-<% end %>
-```
-
-LiveView version:
-```none
-def render(assigns) do
-  ~H"""
-  <.form for={@form} id="customer_form" action={~p"/customer"} style="display:none !important">
-    <.input field={@form[:email]} type="email" label="Email" tabindex="-1" />
-    <.input field={@form[:password]} type="password" label="Password" tabindex="-1" />
-    <button>Register</button>
-  </.form>
-  ...
-```
-
-```
-# @form needs a value
-def mount(_params, _session, socket) do
-  form = to_form(%{}, as: "user")
-  {:ok, assign(socket, form: form)}
+case Paraxial.check_rate(key, seconds, count, ban_length, ip, msg) do
+  {:allow, _} ->
+    # Allow code here
+  {:deny, _} ->
+    conn
+    |> put_resp_content_type("text/html")
+    |> send_resp(401, "Banned")
 end
 ```
 
-## 12. Exploit Guard
+## Paraxial Plugs
 
-Exploit Guard provides runtime application self protection for your application. To use Exploit Guard, ensure your agent version is >= `2.4.0`.
+The Paraxial.io Agent provides several Plugs to be used in your application code:
 
-Exploit Guard has two configurations, `:monitor` or `:block`:
+1. `Paraxial.AllowedPlug` - Required, this Plug determines if an incoming requests matches your allow/block lists. If a request is halted by this Plug, internally Paraxial will still record it. 
 
-`monitor` - No action will be taken, this is the "read only" option.
+2. `Paraxial.RecordPlug` - Required, records incoming HTTP requests into a local buffer, then sends them to the Paraxial.io backend.
 
-`block` - The process where the new function was created will be killed.
+3. `Paraxial.AssignCloudIP` - Optional, if the `remote_ip` of an incoming request matching a cloud provider IP address, this plug will add metadata to the conn via an assigns. For example, if a conn's remote_ip matches aws, this plug will do `assigns(conn, :paraxial_cloud_ip, :aws)`.
 
-When Exploit Guard detects a new function is created at runtime, an alert will be sent to your Paraxial.io site. If you have a webhook configured, a POST request will be sent. 
+4. `Paraxial.BlockCloudIP` - Optional, similar to AssignCloudIP. When a conn matches a cloud provider IP, the assign is updated and the conn is halted, with a 404 response sent to the client. 
 
-Example:
+5. `Paraxial.CurrentUserPlug` - Optional, only works if `conn.assigns.current_user.email` is set. Sets the :paraxial_current_user assigns by calling `assign(conn, :paraxial_current_user, conn.assigns.current_user.email)`
 
-```elixir
-config :paraxial,
-  paraxial_api_key: "API_KEY",  
-  exploit_guard: :monitor
-```
+## Assigns
 
-To trigger an Exploit Guard event for testing, start your application with:
+This is a table of every Paraxial assigns value. To avoid conflict with assigns in your application code, each assigns key is prefixed with `paraxial`. 
 
-```
-% iex -S mix
-...
-[info] [Paraxial] Exploit Guard set to block mode
-...
-iex(1)> a = :erlang.term_to_binary(fn x -> x end)  # Enter this line
-<<131, 112, 0, ...>>
-iex(2)> :erlang.binary_to_term(a)                  # Enter this line
-```
+| Key                       | Set By           | Type |
+| :---                      | :---             | :--- |
+| :paraxial_login_success   | User Application | Boolean    |
+| :paraxial_login_user_name | User Application | String     |
+| :paraxial_current_user    | User Application | String     |
+| :paraxial_cloud_ip        | Paraxial Agent   | String (aws, azure, etc.) |
 
-Now view the output:
+
+To monitor login attempts, use:
 
 ```
-iex(3)> [alert] [Paraxial] Exploit behavior detected, binary_to_term created function
-[alert] [Paraxial] Exploit info: 
-13:36:14.732438 <0.736.0> erlang:binary_to_term(<<131,112,0 ...
-[alert] [Paraxial] Block mode active, exploit process killed
-[alert] [Paraxial] Exploit behavior detected, binary_to_term created function
-[alert] [Paraxial] Exploit info: 
-13:36:14.742337 <0.736.0> erlang:binary_to_term/1 --> #Fun<erl_eval.42.3316493>
-
-[alert] [Paraxial] Block mode active, exploit process killed
-** (EXIT from #PID<0.736.0>) shell process exited with reason: killed
-Interactive Elixir (1.13.0) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> 
+assign(conn, :paraxial_login_success, true/false)
 ```
 
-Visit `Site > Exploit Guard` to view the event. 
+To monitor the login name for the given login attempt use:
 
-Note that the agent was set to block mode, so the relevant exploit process was killed. For more information on how RCE exploits work in Elixir, see the article "Elixir/Phoenix Security: Remote Code Execution and Serialisation" - https://paraxial.io/blog/elixir-rce
+```
+assign(conn, :paraxial_login_user_name, "userNameHere")
+```
 
-## 13. FAQ
+To map incoming requests to the currently logged in user, use:
 
-### Do my users need to wait for a round trip network connection because of Paraxial.io?
+```
+assign(conn, :paraxial_current_user, "userNameHere")
+```
+
+The `:paraxial_cloud_ip` assign is set by `Paraxial.AssignCloudIP`. If you do not use this assign anywhere in your application code, and just want to block cloud IPs, use `Paraxial.BlockCloudIP`. Check your configuration to ensure `fetch_cloud_ips: true` is set. 
+
+
+## Using the Paraxial Assigns
+
+The Paraxial agent allows you to collect information about which IP addresses are attempting to login in to which accounts in your application, and if those logins were successful. This is possible by setting two values in your conn assigns, `:paraxial_login_success` and `:paraxial_login_user_name`.
+
+The code below was generated using the mix auth generator, however your application may require setting these values in different locations. The example below is given to illustrate how to set the assigns. 
+
+```
+conn = assign(conn, :paraxial_login_user_name, email)
+conn = assign(conn, :paraxial_login_success, true)
+conn = assign(conn, :paraxial_login_success, false)
+```
+
+
+![assign](./assets/10assign.png)
+
+![assign](./assets/11assign.png)
+
+
+
+## Debug
+
+The majority of Phoenix applications do this by default. Check your `endpoint.ex` file for the line:
+
+```
+  plug Plug.RequestId
+```
+
+This plug sets `x-request-id`, which is required for the Paraxial agent to work correctly. If it does not exist, add it to your project. 
+
+
+Set your application's local logging level to debug. This will allow you to see debug messages from the Paraxial agent. Example `config/dev.exs`:
+
+```
+config :logger, level: :debug
+```
+
+## FAQ
+
+*Do my users need to wait for a round trip network connection because of Paraxial.io?*
 
 No, the analysis takes place in the agent, there is no round-trip network connection required. 
 
-### What happens in my application if the Paraxial.io agent cannot communicate with the Paraxial.io backend?
+<br>
+
+*What happens in my application if the Paraxial.io agent cannot communicate with the Paraxial.io backend?*
 
 The agent will fail open, so your application will continue to function as it normally would without the agent installed. 
 
-### How long is my site's data stored?
+<br>
+
+*How long is my site's data stored?*
 Seven days, after which it is automatically deleted. 

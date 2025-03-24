@@ -174,11 +174,157 @@ Note that you have have to change the values here, for example your application 
 To test your implementation, use inspect element in your browser to remove `display:none !important` on the rendered page, then submit the form. If you get banned, the setup was successful. 
 
 
-## Banning Malicious Clients 
+## Banning Malicious Clients Doing .php Requests
+
+In a Phoenix app you may want to define a plug with some custom logic, for example if an IP sends a request ending in `.php`, this is a strong signal they are not a real user and should be banned. You could write this plug yourself, or use the one included with Paraxial.io. 
+
+`endpoint.ex`
+```
+  plug RemoteIp, headers: ["fly-client-ip"]    # This is specific to fly.io
+  plug Paraxial.AllowedPlug                    # Required to enforce Paraxial.io bans
+  plug Paraxial.RecordPlug                     # Optional, requires paid account
+  plug Paraxial.PHPAttackPlug, length: :week   # Place before the router
+  plug HavanaWeb.Router                        # The value "HavanaWeb" will be different in your own project
+  plug Paraxial.RecordPlug                     # Optional, requires paid account
+```
+
+```
+defmodule Paraxial.PHPAttackPlug do
+  @moduledoc """
+  Plug to ban IPs sending requests that end in .php
+
+  Most Elixir and Phoenix applications do not have routes ending in .php,
+  so this is a strong signal an IP is malicious. The default ban length
+  is one hour, this can be configured when setting the plug in your
+  endpoint.ex file:
+
+    plug Paraxial.PHPAttackPlug, length: :week
+    plug HavanaWeb.Router  # Your application name will be different
+
+  Valid options for :length are :hour, :day, :week, :infinity
+  """
+  import Plug.Conn
+  require Logger
+
+  @valid_lengths [:hour, :day, :week, :infinity]
+  @default_length :hour
+  @ban_message "Sent request ending in .php"
+
+  def init(opts) do
+    length = Keyword.get(opts, :length, @default_length)
+
+    if length in @valid_lengths do
+      opts
+    else
+      Logger.warning("[Paraxial] Invalid option for Paraxial.PHPAttackPlug: #{length}, using #{@default_length}")
+      [length: @default_length]
+    end
+  end
+
+  def call(conn, opts) do
+    if php_request?(conn.request_path) do
+      length = Keyword.get(opts, :length)
+
+      Task.start(fn ->
+        Paraxial.ban_ip(conn.remote_ip, length, @ban_message)
+      end)
+
+      conn
+      |> halt()
+      |> send_resp(403, Jason.encode!(%{"error" => "banned"}))
+    else
+      conn
+    end
+  end
+
+  defp php_request?(path) do
+    String.ends_with?(String.downcase(path), ".php")
+  end
+end
+```
+
+The above code is the source for `plug Paraxial.PHPAttackPlug`. Below is an example of a ban notification from the Paraxial.io Slack App:
+
+<img src="../assets/php_ban.png" alt="rule" width="550"/>
+
+Now you may want to use a custom plug with your own logic in Elixir code. For this, Paraxial.io gives you the function:
+
+`Paraxial.ban_ip(ip, length, message)`
+
+```
+  Ban an IP address, both locally and on the Paraxial.io backend.
+
+  Returns the result of an HTTP request, for example:
+
+  {:ok, "ban created"} - returned on successful ban
+
+  {:error, "ban not created"} - returned if you attempt to ban an IP that is already banned
+
+  {:error, "invalid length, valid options are :hour, :day, :week, :infinity"}
+
+  If you are using this function in a blocking content, call with Task.start, https://hexdocs.pm/elixir/1.12/Task.html#start/1
+
+  - `ip` - Format should match conn.remote_ip, which is a tuple, 
+           {192, 168, 1, 1} or {8193, 3512, 34211, 0, 0, 35374, 880, 29492}
+  - `length` - Valid options are :hour, :day, :week, :infinity
+  - `message` - A string comment, for example "Submitted honeypot HTML form"
+```
+
+See the example above for how to use this function. It does trigger an HTTP request, so using a Task is helpful to prevent blocking. 
+
+```
+Task.start(fn ->
+  Paraxial.ban_ip(conn.remote_ip, length, @ban_message)
+end)
+```
+
 
 ## Data Center and Cloud IPs
 
+By default, several Cloud hosting IP ranges are defined in the Paraxial agent:
+
+- AWS
+- Azure
+- GCP
+- Digital Ocean
+- Oracle
+
+This is useful because a login request coming from a rented Cloud IP server is most likely a bot, and should be blocked. To make this data available locally in your agent, ensure `fetch_cloud_ips: true` is set:
+
+```elixir
+config :paraxial,
+  paraxial_api_key: System.get_env("PARAXIAL_API_KEY"),
+  fetch_cloud_ips: true
+```
+
+There are two plugs related to Cloud IP matching:
+
+`Paraxial.AssignCloudIP`
+
+`Paraxial.BlockCloudIP`
 
 
+`Paraxial.AssignCloudIP` If the `remote_ip` of an incoming request matching a cloud provider IP address, this plug will add metadata to the conn via an assigns. For example, if a conn's remote_ip matches aws, this plug will do `assigns(conn, :paraxial_cloud_ip, :aws)`. Use this if your application has branching logic based on if an incoming `conn.remote_ip` is from a rented server.
+
+`Paraxial.BlockCloudIP` - When a conn matches a cloud provider IP, the assign is updated and the conn is halted, with a 404 response sent to the client. Use this to block cloud IPs, for example in your router's authentication pipeline.
+
+<br>
+
+*Will Paraxial.BlockCloudIP block Google's Crawler?*
+
+No, Google's Cloud Platform is hosted on a different IP range from Googlebot. Google will still be able to index your site, you are only blocking requests from GCP servers that anyone can rent. 
+
+<br>
+
+*What if I want to allow a specific Cloud IP? For example a client has a cloud-hosted VPN with a cloud IP.*
+
+Add the IP address to your site's Allow List, and it will no longer be blocked by `Paraxial.BlockCloudIP`  
 
 
+## Further Reading
+
+See the [documentation page for Bot Defense](./bot_defense.md) for detailed information about:
+
+- How rules defined in the web interface work
+- Rate limiting on LiveView websocket channels
+- Assigns values such as `paraxial_login_success`, `:paraxial_login_user_name`, and `:paraxial_current_user`
