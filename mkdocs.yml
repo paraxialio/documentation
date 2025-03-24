@@ -9,29 +9,23 @@ nav:
     - Free Tier FAQ: free_tier_faq.md
     - Slack App: slack_app.md
     - Network Scans: network_scans.md
+  - Elixir:
+    - Getting Started: elixir/started.md
+    - Getting Started - Bot Defense: elixir/started_bot.md
+    - Why Use Paraxial.io for Elixir: elixir/why.md
+    - Code Scans: elixir/code_scans.md
+    - Bot Defense: elixir/bot_defense.md
+    - GitHub App: elixir/github_app.md
+    - GitLab App: elixir/gitlab_app.md
+    - Quick Install: elixir/install.md
+    - Getting Started (Free Tier): elixir/start.md
+    - Changelog: elixir/CHANGELOG.md
   - Ruby:
     - Getting Started: ruby/start.md
     - PHPAttackMiddleware: ruby/php_attack.md
     - Bot Defense: ruby/bot_defense.md
     - Code Scans: ruby/code_scans.md
     - Changelog: ruby/CHANGELOG.md
-  - Elixir:
-    - Why Use Paraxial.io for Elixir: elixir/why.md
-    - Getting Started (Free Tier): elixir/start.md
-    - Code Scans: elixir/code_scans.md
-    - Ignore Dependencies: elixir/ignore_dependencies.md
-    - GitHub App: elixir/github_app.md
-    - GitLab App: elixir/gitlab_app.md
-    - User Manual: elixir/user_manual.md
-    - Cloud IPs: elixir/cloud_ips.md
-    - ban_ip/3 and PHPAttackPlug: elixir/ban_ip.md
-    - Agent Guide: elixir/agent_guide.md
-    - App Audit: elixir/app_audit.md
-    - Bot Defense: elixir/bot_defense_setup.md
-    - Quick Install: elixir/install.md
-    - Live View Bot Defense: elixir/live_view_bot_defense.md
-    - Agent Internals: elixir/agent.md
-    - Changelog: elixir/CHANGELOG.md
 
 theme:
   name: material

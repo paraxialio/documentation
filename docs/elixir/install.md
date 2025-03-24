@@ -2,28 +2,28 @@
 
 ## Introduction 
 
-This is a concise list of steps to install the Paraxial.io agent. It is intended for users who have already read the [agent guide.](./../README.md)
+This is a concise list of steps to install the Paraxial.io agent. It is intended for users who have already read the Getting Started guide. 
 
-## 1. Mix install
+## Mix install paraxial
 
 ```elixir
 {:paraxial, "~> 2.8.2"}
 ```
 
-## 2. Config
+## Config
 
 ```elixir
 config :paraxial,
   paraxial_api_key: System.get_env("PARAXIAL_API_KEY"),  # Required
-  fetch_cloud_ips: true,                                 # Optional, default is false
-  bulk: %{email: %{trusted: 100, untrusted: 3}},         # Optional, see https://hexdocs.pm/paraxial/Paraxial.html#functions
-  trusted_domains: MapSet.new(["paraxial.io", "blackcatprojects.xyz"]) # Optional, see https://hexdocs.pm/paraxial/Paraxial.html#functions
+  fetch_cloud_ips: true,                                 # Optional, set to true if using Paraxial.AssignCloudIP or Paraxial.BlockCloudIP
   exploit_guard: :monitor                                # Optional, set to :monitor or :block 
 ```
 
 Set the `PARAXIAL_API_KEY` environment variable to keep this secret out of source code. 
 
-## 3. Edit `endpoint.ex`
+## Edit `endpoint.ex`
+
+For bot defense:
 
 ```elixir
   plug RemoteIp
@@ -33,47 +33,7 @@ Set the `PARAXIAL_API_KEY` environment variable to keep this secret out of sourc
   plug Paraxial.RecordPlug
 ```
 
-## 4. (Optional) To send current user, edit `router.ex`, add Paraxial.CurrentUserPlug
-
-```elixir
-defmodule HavanaWeb.Router do
-  ...
-  pipeline :browser do
-    ...
-    plug Paraxial.CurrentUserPlug
-  end
-```
-
-Note: Only works with `assign(conn, :paraxial_current_user, conn.assigns.current_user.email)`
-
-## 5. (Optional) Send `:paraxial_login_user_name` via assigns
-
-In your application code, determine how a user's login attempt flows through the code. You are looking for the line right before the user's provided email and password are checked against the database. Once you find that location, re-write the conn with: 
-
-`conn = assign(conn, :paraxial_login_user_name, email)`
-
-Where `email` is the user provided string for a login attempt. 
-
-## 6. (Optional) Send login success true or false
-
-`conn = assign(conn, :paraxial_login_success, false)`
-
-## 7. (Optional) Use the `Paraxial.bulk_allowed?/3` function
-
-In your Paraxial.io config, you can define `:bulk` and `:trusted_domains`
-
-```elixir
-  bulk: %{email: %{trusted: 100, untrusted: 3}},
-  trusted_domains: MapSet.new(["paraxial.io", "blackcatprojects.xyz"])
-```
-
-In your application code, 
-
-`Paraxial.bulk_allowed?(user.email, :email, length(list_of_emails))`
-
-will return true or false, depending on the value of the third argument (an integer), and if the email matching a trusted domain.
-
-## 8. (Optional) Configure the agent to only send events for specific routes
+## (Optional) Only send events for specific routes
 
 To only collect data for specific routes, set your configuration at compile time to the code below, by editing your `config/dev.exs`, `config/test.exs`, and `config/prod.exs` files. 
 
@@ -136,19 +96,29 @@ To fix this error, you might:
 ```
 
 
-## 9. (Optional) Configure the agent to exclude events for specific routes
+## (Optional) Assigns paraxial_current_user
 
-To have the agent send data to the backend for all routes, except certain ones:
-
-- GET /health_check
-
-Set your config to:
-
+```elixir
+defmodule HavanaWeb.Router do
+  ...
+  pipeline :browser do
+    ...
+    plug Paraxial.CurrentUserPlug
+  end
 ```
-config :paraxial,
-  paraxial_api_key: System.get_env("PARAXIAL_API_KEY"),  
-  ... 
-  except: [
-    %{path: "/users/health_check", method: "GET"}
-  ]
-```
+
+Note: This essentially does `assign(conn, :paraxial_current_user, conn.assigns.current_user.email)`, so make sure `conn.assigns.current_user.email` exists. 
+
+## (Optional) Send :paraxial_login_user_name via assigns
+
+In your application code, determine how a user's login attempt flows through the code. You are looking for the line right before the user's provided email and password are checked against the database. Once you find that location, re-write the conn with: 
+
+`conn = assign(conn, :paraxial_login_user_name, email)`
+
+Where `email` is the user provided string for a login attempt. 
+
+## 6. (Optional) Send login success true or false
+
+`conn = assign(conn, :paraxial_login_success, false)`
+
+

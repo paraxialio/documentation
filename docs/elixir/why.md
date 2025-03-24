@@ -51,7 +51,7 @@ Black Cat Projects decides to use GitHub's dependabot for dependency security in
 
 <img src="../assets/deps0.png" alt="deps" width="800"/>
 
-There is a critical vulnerability here that dependabot cannot detect because [dependency graph does not support Elixir.](https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#supported-package-ecosystems)
+There is a critical vulnerability here that dependabot cannot detect because [dependency graph does not support Elixir.](https://paraxial.io/vs-github)
 
 In the above screenshot dependabot generated a lot of noise about non-security related upgrades, but misses the security issue:
 
@@ -128,14 +128,12 @@ Does your application have a login form, where users enter their email and passw
 
 The bot defense feature of Paraxial.io gives you several tools to stop this attack:
 
-- [Rate limiting](./user_manual.md#4-defining-rules)
+- Rate limiting 
 
-- [Banning malicious bots (sending requests for .php endpoints)](./ban_ip.md)
+- Banning malicious bots (sending requests for .php endpoints)
 
-- [Banning requests from data center IPs](./bot_defense_setup.md#10-optional-determine-if-incoming-request-has-a-cloud-providers-ip-address)
+- Banning requests from data center IPs
 
-- [Honeypot HTML forms](./user_manual.md#11-honeypot-urls)
+- Honeypot HTML forms
 
-If you are using LiveView, you can also apply [rate limiting to socket endpoints.](./live_view_bot_defense.md)
-
-<br>
+See [Getting Started - Bot Defense](./started_bot.md) for more information. 

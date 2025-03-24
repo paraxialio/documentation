@@ -1,80 +1,5 @@
 # Code Scans 
 
-## Introduction 
-
-There are three popular security tools for ensuring the security of Phoenix applications:
-
-1. `Sobelow`, for static analysis of source code for vulnerabilities, https://github.com/nccgroup/sobelow 
-2. `deps.audit`, to scan a project's dependencies for vulnerabilities, https://github.com/mirego/mix_audit
-3. `hex.audit`, to scan for dependencies that have been marked as retired, https://hexdocs.pm/hex/Mix.Tasks.Hex.Audit.html 
-
-It may seem straightforward to integrate these tools into your existing CI/CD pipeline, but consider the following questions:
-
-1. When was the last time the scan ran successfully? 
-2. Do you have a record of when all these scans happened?
-3. Did the numbers of vulnerabilities increase or decrease compared to the previous scans? 
-4. How do you view the findings of the most recent scan? Of a scan from 3 months ago? 
-
-With the Paraxial.io agent, you now have access to the command: 
-
-```
-mix paraxial.scan
-```
-
-This will run `Sobelow`, `deps.audit`, and `hex.audit` on your application, then upload the results to the Paraxial.io backend:
-
-![scan](./assets/0scan.png)
-
-
-## 1. Create your site, add the Paraxial.io agent
-
-In the Paraxial.io web interface, create a site for each environment you want to perform scans in. These are typically `dev`, `test`, or `prod`. For this tutorial, we use `dev`. In the "Site Settings" page, get your Site API key. 
-
-In your Phoenix app, open `config/dev.exs` and add:
-
-```elixir
-config :paraxial,
-  paraxial_api_key: System.get_env("PARAXIAL_API_KEY"),
-```
-
-Add the Paraxial.io agent as a config in `mix.exs`:
-
-```
-{:paraxial, "~> 2.8.2"}
-
-```
-
-## 2. Install Sobelow 
-
-Sobelow is installed as a dependency of Paraxial.io. To flag findings as false positives, use code comments or Sobelow hashes. You can read more about how to flag false positives here - https://github.com/nccgroup/sobelow#false-positives 
-
-The article "Elixir Security: Real World Sobelow" also discusses this, see section `5. False Positives` - https://paraxial.io/blog/real-sobelow
-
-The `mix paraxial.scan` command will skip findings marked as false positives. 
-
-## 3. Test the install 
-
-Run `mix deps.get` to install the Paraxial.io agent. To see if the install was successful, run:
-
-```
-mix paraxial.scan
-```
-
-If the agent is installed correctly, and your site's API key is correct, you should see the following output:
-
-```
-19:36:42.184 [info]  [Paraxial] API key found, scan results will be uploaded
-[Paraxial] Scan findings: %Paraxial.Scan{
-  api_key: "REDACTED",
-  findings: [
-    %Paraxial.Finding{
-    ...
-```
-
-## 4. View the scan results 
-
-The scan task will run `Sobelow`, `deps.audit`, and `hex.audit` on your project, and print the results in the terminal. Go to your site in [app.paraxial.io](https://app.paraxial.io/) to see the scan results, and a history of previous scans.  
-
 ## Flags
 
 Command line flags for `mix paraxial.scan`:
@@ -120,3 +45,34 @@ end
 ```
 
 This is to run Sobelow against all child applications. 
+
+# Ignore Dependencies
+
+This features requires Paraxial.io Elixir version `2.8.2` or later. 
+
+To ignore a dependency related finding in Paraxial.io code scans:
+
+1. Create the file `.paraxial-ignore-deps` in your project directory
+2. Add the name of each dependency you want to ignore on a new line
+
+Example:
+
+```
+% cat .paraxial-ignore-deps 
+hackney 
+jason
+remote_ip
+
+```
+
+Sample output:
+
+```
+% mix paraxial.scan        
+
+16:53:49.918 [info] [Paraxial] v2.8.2, scan starting
+16:53:49.920 [info] [Paraxial] API key found, scan results will be uploaded
+16:53:50.840 [info] [Paraxial] Ignoring dependencies listed in .paraxial-ignore-deps
+[Paraxial] .paraxial-ignore-deps list: ["hackney", "jason", "remote_ip"]
+...
+```

@@ -8,6 +8,8 @@ VPS: AWS, GCP, Hetzner, Azure, Digital Ocean
 
 If your hosting provider is in the "PaaS" group, network scanning is not applicable to your application, because you don't have access to the host operating system and network configuration. If you are on a VPS, then using network scanning is recommended. 
 
+If you cannot verify your site due to a DNS issue with your domain provider, email `support@paraxial.io` for help. 
+
 ## Setup
 
 To get started, create your site and go to the "Network Scans" page:
