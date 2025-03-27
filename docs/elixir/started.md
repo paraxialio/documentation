@@ -56,7 +56,7 @@ This view displayed:
 - The current vulnerabilities (via code scans)
 - When the last code scan took place
 
-The foundation of a security program is understanding what assets needs to be protected. With this view, you can quickly get a sense of what security controls are currently active across your organization. 
+The foundation of a security program is understanding what assets need to be protected. With this view, you can quickly get a sense of what security controls are currently active across your organization. 
 
 
 ## Network Scans

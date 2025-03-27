@@ -112,7 +112,7 @@ You can use a similar route in your own application during testing. Now send a f
 
 ![rule](./assets/started/ST4-rule-event.png)
 
-By default, the Paraxial.io agent does not send user email's to the backend. You can get the history of login attempts for an IP address, instructions in [the Bot Defense docs.](./bot_defense.md#using-the-paraxial-assigns)
+By default, the Paraxial.io agent does not send user emails to the backend. You can get the history of login attempts for an IP address, instructions in [the Bot Defense docs.](./bot_defense.md#using-the-paraxial-assigns)
 
 
 ## HTML Honeypot
