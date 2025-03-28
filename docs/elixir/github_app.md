@@ -12,14 +12,31 @@ Why install the Paraxial.io agent locally if the goal is to run the Github app i
 
 Note: You MUST use version `2.6.3` or later. Earlier versions do not support the GitHub App.
 
-![github_app](./assets/gh1.png)
+`mix.exs`
+```
+{:paraxial, "~> 2.8.2"}
+```
+```
+mix deps.get
+```
 
 Install the Paraxial.io agent in `mix.exs`, then configure `dev.exs` and `prod.exs`.
 
-![github_app](./assets/gh2.png)
-![github_app](./assets/gh3.png)
+```
+config/dev.exs
 
-For this example we really only need `dev.exs`, however the reason you want this in both environments is for the additional runtime protection features of Paraxial.io. 
+config :paraxial,
+  paraxial_api_key: System.get_env("PARAXIAL_API_KEY")
+```
+
+```
+config/prod.exs
+
+config :paraxial,
+  paraxial_api_key: System.get_env("PARAXIAL_API_KEY")
+```
+
+For the GitHub app we really only need `dev.exs`, however the reason you want this in both environments is for the additional runtime protection features of Paraxial.io. 
 
 Set the environment variable in your terminal with:
 
@@ -28,11 +45,15 @@ Set the environment variable in your terminal with:
 This key is found in the "Site Settings" page. Now run:
 
 ```
+% mix deps.compile
 % mix paraxial.scan
 13:35:00.130 [info]  [Paraxial] API key found, scan results will be uploaded
 ...
 13:35:01.905 [info]  [Paraxial] Scan written successfully. UUID 4b6a5fe3-626a-46e5-a959-6008f6114a74
 ```
+
+This confirms Paraxial.io is installed and working locally. 
+
 
 ## 2. Install the Paraxial.io GitHub App, get the install_id. 
 
