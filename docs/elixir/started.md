@@ -159,6 +159,8 @@ The App Audit feature is similar, in that it also generates a list of all the de
 
 Why this redundancy? Sometimes the dependencies specified in `mix.lock` do not match what is actually deployed in production. In a scenario where there is a major vulnerability in a core library such as plug, cowboy, or phoenix, it is a good idea to use App Audit.
 
+Consider [CVE-2025-32433](https://paraxial.io/blog/erlang-ssh), an Unauthenticated Remote Code Execution in Erlang/OTP SSH. When CVE-2025-32433 was announced Paraxial.io customers were able to use [App Audit](https://paraxial.io/blog/erlang-ssh) to determine if the Erlang SSH library was running in their application, and [Network Scans](https://paraxial.io/blog/erlang-ssh) to determine if the service was exposed via an open port to the public internet. 
+
 To get App Audit data for your current site, start your application with a valid Paraxial API key:
 
 ```
