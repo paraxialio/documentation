@@ -1,5 +1,25 @@
 # Why Use Paraxial.io for Elixir
 
+[CVE-2025-32433, an Unauthenticated Remote Code Execution](https://paraxial.io/blog/why-vcs-miss) in Erlang/OTP SSH, is a good example which demonstrates why the deep feature set of Paraxial.io is necessary to deal with real exploits becoming public:
+
+- Static analysis of source code cannot detect the vulnerability
+- Checking the project's lockfile will not detect it
+
+Most SAST/SCA tools stop their coverage there. With Paraxial.io:
+
+- The App Audit feature shows if the Erlang SSH library is loaded
+- The Network Scan feature can detect if the SSH service is exposed to the public internet
+
+Further reading:
+
+[What the Critical Erlang SSH Vulnerability Means for Elixir Developers](https://paraxial.io/blog/erlang-ssh)
+
+[Why VC Funded Security Firms Miss a Critical Vulnerability](https://paraxial.io/blog/why-vcs-miss)
+
+If your Elixir application is critical to your business and exposed to the public internet, it is recommended that you use all the Paraxial.io features. Below are additional scenarios that are highly likely to occur. 
+
+---
+
 An Elixir/Phoenix web application that is exposed to the public internet will be attacked. This is the reality of the modern web, any software you expose must have safeguards. Security is a large and complicated subject, if you are thinking "I don't even know where to start with security", do not worry, you have come to the right place. 
 
 Consider a SaaS business, Black Cat Projects, which makes project management software. Below are examples of security incidents and how Paraxial.io would prevent each one:
