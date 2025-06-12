@@ -7,7 +7,7 @@ This is a concise list of steps to install the Paraxial.io agent. It is intended
 ## Mix install paraxial
 
 ```elixir
-{:paraxial, "~> 2.8.2"}
+{:paraxial, "~> 2.8.3"}
 ```
 
 ## Config

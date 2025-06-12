@@ -36,7 +36,7 @@ Install the Paraxial.io agent. The agent is written in Elixir, and installed as 
 
 `mix.exs`
 ```
-{:paraxial, "~> 2.8.2"}
+{:paraxial, "~> 2.8.3"}
 ```
 
 ```
@@ -86,7 +86,7 @@ Now start your application, make sure the configuration is correct, and send som
 ```
 @ potion_shop % mix phx.server
 Generated carafe app
-[info] [Paraxial] v2.8.2 URL and API key found. Agent will be started  <-- This is what you want to see
+[info] [Paraxial] v2.8.3 URL and API key found. Agent will be started  <-- This is what you want to see
 [info] Access CarafeWeb.Endpoint at http://localhost:4000
 [info] GET /
 [info] Sent 200 in 58ms

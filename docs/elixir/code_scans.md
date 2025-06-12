@@ -70,7 +70,7 @@ Sample output:
 ```
 % mix paraxial.scan        
 
-16:53:49.918 [info] [Paraxial] v2.8.2, scan starting
+16:53:49.918 [info] [Paraxial] v2.8.3, scan starting
 16:53:49.920 [info] [Paraxial] API key found, scan results will be uploaded
 16:53:50.840 [info] [Paraxial] Ignoring dependencies listed in .paraxial-ignore-deps
 [Paraxial] .paraxial-ignore-deps list: ["hackney", "jason", "remote_ip"]

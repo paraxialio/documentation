@@ -101,7 +101,7 @@ Now it is time to install the Paraxial.io agent. The agent is written in Elixir,
 
 `mix.exs`
 ```
-{:paraxial, "~> 2.8.2"}
+{:paraxial, "~> 2.8.3"}
 ```
 
 ```
@@ -124,7 +124,7 @@ Then in your terminal:
 % export PARAXIAL_API_KEY=your_secret_here
 % mix deps.compile
 % mix paraxial.scan
-11:49:15.586 [info] [Paraxial] v2.8.2, scan starting
+11:49:15.586 [info] [Paraxial] v2.8.3, scan starting
 
 11:49:15.587 [info] [Paraxial] API key found, scan results will be uploaded
 ...
@@ -165,7 +165,7 @@ To get App Audit data for your current site, start your application with a valid
 
 ```
 @ potion_shop % mix phx.server   
-[info] [Paraxial] v2.8.2 URL and API key found. Agent will be started
+[info] [Paraxial] v2.8.3 URL and API key found. Agent will be started
 ...
 [info] Running CarafeWeb.Endpoint with cowboy 2.13.0 at 127.0.0.1:4000 (http)
 [info] Access CarafeWeb.Endpoint at http://localhost:4000
