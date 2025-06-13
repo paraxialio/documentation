@@ -1,0 +1,1482 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.paraxial.io/elixir/bot_defense/">
+      
+      
+        <link rel="prev" href="../code_scans/">
+      
+      
+        <link rel="next" href="../github_app/">
+      
+      
+      <link rel="icon" href="../../parax_fav.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Bot Defense - Paraxial.io Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bot-defense" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Paraxial.io Documentation" class="md-header__button md-logo" aria-label="Paraxial.io Documentation" data-md-component="logo">
+      
+  <img src="../../paraxial.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Paraxial.io Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bot Defense
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Paraxial.io Documentation" class="md-nav__button md-logo" aria-label="Paraxial.io Documentation" data-md-component="logo">
+      
+  <img src="../../paraxial.png" alt="logo">
+
+    </a>
+    Paraxial.io Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Paraxial.io
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Paraxial.io
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../free_tier_faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Free Tier FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../slack_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Slack App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Elixir
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Elixir
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../started_bot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started - Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Why Use Paraxial.io for Elixir
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Bot Defense
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bot Defense
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#defining-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Rules
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exclude-data-collection-for-specific-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exclude data collection for specific routes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#liveview" class="md-nav__link">
+    <span class="md-ellipsis">
+      LiveView
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paraxial-plugs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paraxial Plugs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assigns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Assigns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-paraxial-assigns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using the Paraxial Assigns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#faq" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAQ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitlab_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitLab App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started (Free Tier)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ruby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/php_attack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PHPAttackMiddleware
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/bot_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/code_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="bot-defense">Bot Defense</h1>
+<p><strong>Definitions</strong></p>
+<p><strong>Site</strong> - An Elixir/Phoenix/Plug web application that has the Paraxial agent installed and running. You create a site through the Paraxial web interface, provide the site API key to the Paraxial agent, and a connection is established between the Paraxial server and your application. A site has many rules, allowed IP addresses, banned IP address, and site members.</p>
+<p><strong>Rule</strong> - A user defined condition such as, "If one IP address sends &gt; 20 POST requests to <code>/users/log_in</code> in a period of 5 seconds, create an alert and ban the IP address." A benefit of Paraxial over traditional systems is that if an IP sending hundreds of requests per second, it will only be permitted to send 20 requests, the 21st will be banned. Compare this with a periodic database query, which would allow hundreds of requests before banning the client.</p>
+<p><strong>Rule Event</strong> - When an IP address matches a rule, such as, "If an IP sends &gt; 20 POST requests to <code>/users/log_in</code> in a period of 5 seconds, alert and ban", a rule event is created. The rule event contains information about what caused the rule to be triggered.</p>
+<p><strong>Allow List</strong> - A list of IP prefixes defined by the user. If an IP matches a prefix on this list, it will always be allowed through. Supports IPv4 and IPv6 prefixes.</p>
+<p><strong>Ban List</strong> - Similar to Allow List, matching requests will never succeed. Supports IPv4 and IPv6 prefixes.</p>
+<p><strong>Site Admin</strong> - Has full control over the site.</p>
+<p><strong>Site User</strong> - Limited control over a site, for example this user cannot delete the site.</p>
+<h2 id="defining-rules">Defining Rules</h2>
+<p>Paraxial.io allows users to define "Rules", which are conditions in their web application related to incoming HTTP traffic. The following are examples of rules:</p>
+<ol>
+<li>
+<p><code>If an IP sends &gt; 5 POST requests to /accounts/new_user in a 20 second period, create an alert.</code></p>
+</li>
+<li>
+<p><code>If an IP sends &gt; 10 requests of any HTTP method to /projects/*/export in a 12 second period, create an alert and ban the IP address.</code></p>
+</li>
+<li>
+<p><code>If an IP sends &gt; 100 requests of any HTTP method to any path in a 5 second period, ban the IP address.</code></p>
+</li>
+</ol>
+<p>The purpose of defining rules is to prevent a malicious client from sending an excessive number of unwanted requests. Some examples of requests that you may want to throttle may be related to:</p>
+<ul>
+<li>Login attempts</li>
+<li>New account creation</li>
+<li>Credit card transactions</li>
+<li>Email sending</li>
+<li>Expensive computation</li>
+<li>Excessive total requests (scraping, vulnerability scanning)</li>
+<li>Denial of service attacks</li>
+</ul>
+<p>To create a rule, navigate to:</p>
+<p><code>app.paraxial.io/site/:your_site/new_rule</code></p>
+<p>You should see a form that says <code>Create new rule for :your_site</code>, with some fields. These are:</p>
+<ol>
+<li><code>Rule name</code> - A user provided string, it should be a descriptive comment on what the rule intends to do.</li>
+<li><code>N requests</code> - The number of requests one IP address can make in the given time period before matching the rule.</li>
+<li><code>Time period in seconds</code> - If you wish to limit login requests to 10 every 5 seconds, this value should be 5.</li>
+<li><code>Path</code> - The path of the incoming request. Uses a custom pattern matching language detailed below.</li>
+<li><code>HTTP Methods</code> - Examples include GET, PUT, POST. Uses a custom pattern matching language detailed below.</li>
+<li><code>On trigger</code> - When the rule is matched, you may create an alert, ban the IP, or do both.</li>
+</ol>
+<p>Example Rule Creation</p>
+<p>To create the rule <code>If an IP sends &gt; 5 POST requests to /accounts/new_user in a 20 second period, create an alert and ban the IP address</code>, the following form values are used:</p>
+<ol>
+<li>
+<p><code>Rule name</code> - This is an arbitrary value, written to be understood by users of Paraxial.io. You could name this "Alert and ban on excessive logins in short period", or "ATO &gt; 5 in 20s to /accounts/new_user". The behavior of the rule is independent of this string, similar to comments in a programming language. </p>
+</li>
+<li>
+<p><code>N requests</code> - <code>5</code></p>
+</li>
+<li>
+<p><code>Time period in seconds</code> - <code>20</code></p>
+</li>
+<li>
+<p><code>Path</code> - <code>/accounts/new_user</code> - This must be entered exactly as provided here. If your value does not start with a <code>/</code>, it will be rejected. More details are below on how path matching works.</p>
+</li>
+<li>
+<p><code>HTTP Methods</code> - <code>POST</code> - This must be entered exactly as provided here. More details on http method matching below.</p>
+</li>
+<li>
+<p><code>On trigger</code> - <code>Create an alert and ban the IP</code></p>
+</li>
+</ol>
+<p><br></p>
+<p><strong>Field Details</strong></p>
+<p><strong>N requests</strong>
+<code>N requests</code> must be &gt; 0 and &lt; 999. </p>
+<p><strong>Time period in seconds</strong>
+<code>Time period in seconds</code> must be &gt; 0 and &lt; 86,400.</p>
+<p><strong>Path</strong>
+The "Path" field uses a custom language for matching on paths. Examples are:</p>
+<hr />
+<p>Path <code>*</code> - Match any path.</p>
+<p>Matching:</p>
+<pre><code>paraxial.io/new_user
+paraxial.io/site/paraxial.io/settings
+paraxial.io/site/paraxial.io/edit_users/update
+</code></pre>
+<hr />
+<p>Path <code>/new_user</code> - Only matching incoming requests for the route <code>new_user</code>.</p>
+<p>Matching:</p>
+<pre><code>paraxial.io/new_user
+paraxial.io/new_user/
+paraxial.io/new_user//
+paraxial.io/new_user///
+</code></pre>
+<p>Will not match:</p>
+<pre><code>paraxial.io/new_user/a/new_user
+paraxial.io/new_user/!
+paraxial.io/new_user/a
+</code></pre>
+<hr />
+<p>Path <code>/site/*/settings</code> - Matching incoming requests for the route <code>/site/:any_value/settings</code>.</p>
+<p>Matching:</p>
+<pre><code>paraxial.io/site/paraxial.io/settings
+paraxial.io/site/paraxial.io/settings/
+paraxial.io/site/customsitehere.com/settings
+paraxial.io/site/customsitehere.com/settings/
+</code></pre>
+<p>Will not match:</p>
+<pre><code>paraxial.io/site/paraxial.io
+paraxial.io/site/paraxial.io/settings/edit_users
+</code></pre>
+<hr />
+<p>Path <code>/site/*/settings/*</code> - Matching incoming requests for the route <code>/site/:any_value/settings/:any_value</code>.</p>
+<p>Matching:</p>
+<pre><code>paraxial.io/site/paraxial.io/edit_users
+paraxial.io/site/paraxial.io/list_users
+</code></pre>
+<p>Will not match:</p>
+<pre><code>paraxial.io/site/paraxial.io/edit_users/update
+paraxial.io/site/paraxial.io
+</code></pre>
+<p><br></p>
+<p><strong>HTTP Methods</strong></p>
+<p>The <code>HTTP Methods</code> field takes a list of comma separated HTTP method names, such as: </p>
+<p><code>GET, POST, PUT</code></p>
+<p>for use in rule matching. It also supports the wildcard <code>*</code> character, to match all HTTP methods. These are:</p>
+<p><code>GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE, PATCH</code></p>
+<p>To match all HTTP methods, input: <code>*</code></p>
+<p>To match GET only, input: <code>GET</code></p>
+<p>To match GET and POST, input: <code>GET, POST</code></p>
+<p>To match GET, POST, and PUT, input: <code>GET, POST, PUT</code></p>
+<p><br></p>
+<p><strong>Rule Events</strong>
+The rule events page lists useful information about why an IP address matched a rule. This includes:</p>
+<ol>
+<li>The rule that was matched</li>
+<li>How many requests the IP sent in the rule time period</li>
+<li>If the IP is currently on the allow or ban lists</li>
+<li>Associated login attempts from the IP, if <code>paraxial_login_user_name</code> and <code>paraxial_login_success</code> assigns are in use by your application</li>
+<li>The matching HTTP requests, with timestamps  </li>
+</ol>
+<p><br></p>
+<p><strong>Allow/Block List</strong>
+The IP block and allow lists support IPv4 and IPv6 prefixes. Examples include:</p>
+<ul>
+<li><code>3.5.140.0/22</code></li>
+<li><code>2600:1f14:fff:f800::/56</code></li>
+</ul>
+<h2 id="exclude-data-collection-for-specific-routes">Exclude data collection for specific routes</h2>
+<p>The pricing on Paraxial.io is by the number of good events sent by the agent to the backend. A good event means one HTTP request sent to your web app. So if 5 users send a total of 50 requests, that's 50 good events. If a spammer sends 5,000 blocked requests, those don't count. By default, the agent sends all HTTP requests to the backend.</p>
+<p>To only collect data for specific routes, set your configuration at compile time to the code below, by editing your <code>config/dev.exs</code>, <code>config/test.exs</code>, and <code>config/prod.exs</code> files. </p>
+<p>Do NOT set <code>only:</code> or <code>except:</code> at runtime, the agent uses metaprogramming to generate code at compile time. If you set <code>only:</code> or <code>except:</code> at runtime, the agent will ignore the config and send data for all routes. As of <code>2.0.0</code>, you will get an error (see below).</p>
+<p>To have the agent only send data to the backend for the following:</p>
+<ul>
+<li>GET /users/log_in</li>
+<li>POST /users/log_in</li>
+<li>GET /users/:id/settings</li>
+</ul>
+<pre><code class="language-elixir">config :paraxial,
+  paraxial_api_key: System.get_env(&quot;PARAXIAL_API_KEY&quot;),  
+  ... 
+  only: [
+    %{path: &quot;/users/log_in&quot;, method: &quot;GET&quot;},
+    %{path: &quot;/users/log_in&quot;, method: &quot;POST&quot;},
+    %{path: &quot;/users/:id/settings&quot;, method: &quot;POST&quot;}
+  ]
+</code></pre>
+<p>To send events for all routes, except the following:</p>
+<ul>
+<li>GET /health_check</li>
+<li>GET /users/:id/status</li>
+</ul>
+<pre><code class="language-elixir">config :paraxial,
+  paraxial_api_key: System.get_env(&quot;PARAXIAL_API_KEY&quot;),  
+  ... 
+  except: [
+    %{path: &quot;/health_check&quot;, method: &quot;GET&quot;},
+    %{path: &quot;/users/:id/status&quot;, method: &quot;GET&quot;}
+  ]
+</code></pre>
+<p>After changing <code>only/except</code> in your compile time configuration, you must run:</p>
+<pre><code>mix deps.compile paraxial --force
+</code></pre>
+<p>Or you will get an error:</p>
+<pre><code>@ air % mix phx.server
+ERROR! the application :paraxial has a different value set for key :except during runtime compared to compile time. Since this application environment entry was marked as compile time, this difference can lead to different behaviour than expected:
+
+  * Compile time value was not set
+  * Runtime value was set to: [%{method: &quot;GET&quot;, path: &quot;/health_check&quot;}, %{method: &quot;GET&quot;, path: &quot;/users/:id/status&quot;}]
+
+To fix this error, you might:
+
+  * Make the runtime value match the compile time one
+
+  * Recompile your project. If the misconfigured application is a dependency, you may need to run &quot;mix deps.compile paraxial --force&quot;
+
+  * Alternatively, you can disable this check. If you are using releases, you can set :validate_compile_env to false in your release configuration. If you are using Mix to start your system, you can pass the --no-validate-compile-env flag
+</code></pre>
+<p>Note that you should only define rules for routes that have collection enabled. If you define a rule for a route, but disable collection for it, the rule will not work correctly. </p>
+<p>If an attacker is banned due to triggering a rule, the attacker will be banned from all routes in your application, even if collection is not enabled for those routes.</p>
+<h2 id="liveview">LiveView</h2>
+<ul>
+<li>In a LiveView app, you want to rate limit an action that is triggered via a websocket </li>
+<li>In a Phoenix app with multiple endpoints, you want to rate limit requests with a specific <code>conn.host</code>. </li>
+</ul>
+<p>Paraxial.io agent <code>2.7.6</code> introduced the <code>Paraxial.check_rate/6</code> function for these use cases. For example:</p>
+<pre><code>def handle_event(&quot;login&quot;, %{&quot;user&quot; =&gt; user_params}, socket) do
+  ip_string = socket.assigns.address |&gt; :inet.ntoa() |&gt; to_string()
+  key = &quot;user-login-#{ip_string}&quot;
+  seconds = 5
+  count = 5
+  ban_length = &quot;hour&quot;
+  ip = socket.assigns.address
+  msg = &quot;`&gt; 5 requests in 5 seconds to login from #{ip_string}`&quot;
+
+  case Paraxial.check_rate(key, seconds, count, ban_length, ip, msg) do
+    {:allow, _} -&gt;
+      do_handle_login(user_params)
+    {:deny, _} -&gt; 
+      conn
+      |&gt; put_resp_content_type(&quot;text/html&quot;)
+      |&gt; send_resp(429, &quot;Rate limited&quot;)
+end
+</code></pre>
+<p>It is recommended to keep the <code>seconds</code> value under 60 to avoid excessive memory usage. In the above example the rate limiting key is the incoming IP address. This could also be changed to include the <code>conn.host</code> value, user email, or any value you would like to rate limit on. </p>
+<p>The main benefit of this rate limiting over using an open-source version is the banning of IPs will be tracked on the Paraxial.io backend. You can also receive an alert when the rule is triggered via the Paraxial.io Slack App:</p>
+<p><img src="../assets/lv0.png" alt="lv" width="500"/></p>
+<p><code>Paraxial.check_rate(key, seconds, count, ban_length, ip, msg)</code></p>
+<p>Rate limiter that will also ban the relevant IP address via Paraxial.io.</p>
+<p>Returns <code>{:allow, n} or {:deny, n}</code></p>
+<ul>
+<li><code>key: String to rate limit on, ex: "login-96.56.162.210", "send-email-michael@paraxial.io"</code></li>
+<li><code>seconds: Length of the rate limit rule</code></li>
+<li><code>count: Number of times the action can be performed in the seconds time limit</code></li>
+<li><code>ban_length: Valid strings are "alert_only", "hour", "day", "week", "infinity"</code></li>
+<li><code>ip: Tuple, you can pass conn.remote_ip directly here</code></li>
+<li><code>msg: Human-readable string, ex: "&gt; 5 requests in 10 seconds to blackcatprojects.xyz/users/log_in from \#{ip}"</code></li>
+</ul>
+<pre><code>ip_string = conn.remote_ip |&gt; :inet.ntoa() |&gt; to_string()
+key = &quot;user-register-get-\#{ip_string}&quot;
+seconds = 5
+count = 5
+ban_length = &quot;hour&quot;
+ip = conn.remote_ip
+msg = &quot;&gt; 5 requests in 10 seconds to \#{conn.host}/users/log_in from \#{ip_string}&quot;
+
+case Paraxial.check_rate(key, seconds, count, ban_length, ip, msg) do
+  {:allow, _} -&gt;
+    # Allow code here
+  {:deny, _} -&gt;
+    conn
+    |&gt; put_resp_content_type(&quot;text/html&quot;)
+    |&gt; send_resp(401, &quot;Banned&quot;)
+end
+</code></pre>
+<h2 id="paraxial-plugs">Paraxial Plugs</h2>
+<p>The Paraxial.io Agent provides several Plugs to be used in your application code:</p>
+<ol>
+<li>
+<p><code>Paraxial.AllowedPlug</code> - Required, this Plug determines if an incoming requests matches your allow/block lists. If a request is halted by this Plug, internally Paraxial will still record it. </p>
+</li>
+<li>
+<p><code>Paraxial.RecordPlug</code> - Required, records incoming HTTP requests into a local buffer, then sends them to the Paraxial.io backend.</p>
+</li>
+<li>
+<p><code>Paraxial.AssignCloudIP</code> - Optional, if the <code>remote_ip</code> of an incoming request matching a cloud provider IP address, this plug will add metadata to the conn via an assigns. For example, if a conn's remote_ip matches aws, this plug will do <code>assigns(conn, :paraxial_cloud_ip, :aws)</code>.</p>
+</li>
+<li>
+<p><code>Paraxial.BlockCloudIP</code> - Optional, similar to AssignCloudIP. When a conn matches a cloud provider IP, the assign is updated and the conn is halted, with a 404 response sent to the client. </p>
+</li>
+<li>
+<p><code>Paraxial.CurrentUserPlug</code> - Optional, only works if <code>conn.assigns.current_user.email</code> is set. Sets the :paraxial_current_user assigns by calling <code>assign(conn, :paraxial_current_user, conn.assigns.current_user.email)</code></p>
+</li>
+</ol>
+<h2 id="assigns">Assigns</h2>
+<p>This is a table of every Paraxial assigns value. To avoid conflict with assigns in your application code, each assigns key is prefixed with <code>paraxial</code>. </p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Key</th>
+<th style="text-align: left;">Set By</th>
+<th style="text-align: left;">Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">:paraxial_login_success</td>
+<td style="text-align: left;">User Application</td>
+<td style="text-align: left;">Boolean</td>
+</tr>
+<tr>
+<td style="text-align: left;">:paraxial_login_user_name</td>
+<td style="text-align: left;">User Application</td>
+<td style="text-align: left;">String</td>
+</tr>
+<tr>
+<td style="text-align: left;">:paraxial_current_user</td>
+<td style="text-align: left;">User Application</td>
+<td style="text-align: left;">String</td>
+</tr>
+<tr>
+<td style="text-align: left;">:paraxial_cloud_ip</td>
+<td style="text-align: left;">Paraxial Agent</td>
+<td style="text-align: left;">String (aws, azure, etc.)</td>
+</tr>
+</tbody>
+</table>
+<p>To monitor login attempts, use:</p>
+<pre><code>assign(conn, :paraxial_login_success, true/false)
+</code></pre>
+<p>To monitor the login name for the given login attempt use:</p>
+<pre><code>assign(conn, :paraxial_login_user_name, &quot;userNameHere&quot;)
+</code></pre>
+<p>To map incoming requests to the currently logged in user, use:</p>
+<pre><code>assign(conn, :paraxial_current_user, &quot;userNameHere&quot;)
+</code></pre>
+<p>The <code>:paraxial_cloud_ip</code> assign is set by <code>Paraxial.AssignCloudIP</code>. If you do not use this assign anywhere in your application code, and just want to block cloud IPs, use <code>Paraxial.BlockCloudIP</code>. Check your configuration to ensure <code>fetch_cloud_ips: true</code> is set. </p>
+<h2 id="using-the-paraxial-assigns">Using the Paraxial Assigns</h2>
+<p>The Paraxial agent allows you to collect information about which IP addresses are attempting to login in to which accounts in your application, and if those logins were successful. This is possible by setting two values in your conn assigns, <code>:paraxial_login_success</code> and <code>:paraxial_login_user_name</code>.</p>
+<p>The code below was generated using the mix auth generator, however your application may require setting these values in different locations. The example below is given to illustrate how to set the assigns. </p>
+<pre><code>conn = assign(conn, :paraxial_login_user_name, email)
+conn = assign(conn, :paraxial_login_success, true)
+conn = assign(conn, :paraxial_login_success, false)
+</code></pre>
+<p><img alt="assign" src="../assets/10assign.png" /></p>
+<p><img alt="assign" src="../assets/11assign.png" /></p>
+<h2 id="debug">Debug</h2>
+<p>The majority of Phoenix applications do this by default. Check your <code>endpoint.ex</code> file for the line:</p>
+<pre><code>  plug Plug.RequestId
+</code></pre>
+<p>This plug sets <code>x-request-id</code>, which is required for the Paraxial agent to work correctly. If it does not exist, add it to your project. </p>
+<p>Set your application's local logging level to debug. This will allow you to see debug messages from the Paraxial agent. Example <code>config/dev.exs</code>:</p>
+<pre><code>config :logger, level: :debug
+</code></pre>
+<h2 id="faq">FAQ</h2>
+<p><em>Do my users need to wait for a round trip network connection because of Paraxial.io?</em></p>
+<p>No, the analysis takes place in the agent, there is no round-trip network connection required. </p>
+<p><br></p>
+<p><em>What happens in my application if the Paraxial.io agent cannot communicate with the Paraxial.io backend?</em></p>
+<p>The agent will fail open, so your application will continue to function as it normally would without the agent installed. </p>
+<p><br></p>
+<p><em>How long is my site's data stored?</em></p>
+<p>Seven days, after which it is automatically deleted. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../code_scans/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Code Scans">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Code Scans
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../github_app/" class="md-footer__link md-footer__link--next" aria-label="Next: GitHub App">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                GitHub App
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.expand", "navigation.top", "navigation.path", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

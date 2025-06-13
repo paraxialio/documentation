@@ -1,0 +1,1538 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.paraxial.io/ruby/start/">
+      
+      
+        <link rel="prev" href="../../elixir/CHANGELOG/">
+      
+      
+        <link rel="next" href="../php_attack/">
+      
+      
+      <link rel="icon" href="../../parax_fav.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Getting Started - Paraxial.io Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-with-paraxialio-ruby" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Paraxial.io Documentation" class="md-header__button md-logo" aria-label="Paraxial.io Documentation" data-md-component="logo">
+      
+  <img src="../../paraxial.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Paraxial.io Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Getting Started
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Paraxial.io Documentation" class="md-nav__button md-logo" aria-label="Paraxial.io Documentation" data-md-component="logo">
+      
+  <img src="../../paraxial.png" alt="logo">
+
+    </a>
+    Paraxial.io Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Paraxial.io
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Paraxial.io
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../free_tier_faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Free Tier FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../slack_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Slack App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Elixir
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Elixir
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/started_bot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started - Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Why Use Paraxial.io for Elixir
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/code_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/bot_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/github_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/gitlab_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitLab App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started (Free Tier)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../elixir/CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ruby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#free-tier-limits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Free Tier Limits
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-your-paraxialio-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create your Paraxial.io account
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-create-your-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create your site
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sample-app-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Sample App install
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-install-paraxialio" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Install Paraxial.io
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-github-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. GitHub App
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-bot-defense-honeypot-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Bot Defense, Honeypot Form
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-bot-defense-cloud-ips" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Bot Defense, Cloud IPs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bot-defense-rate-limiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Bot Defense, Rate Limiting
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../php_attack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PHPAttackMiddleware
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bot_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="getting-started-with-paraxialio-ruby">Getting started with Paraxial.io (Ruby)</h1>
+<p>This tutorial is a step-by-step guide to setup Paraxial.io with a Ruby on Rails application. It will walk through creating an account, installing the agent, and getting results flowing to the backend. Functionality is limited in the free tier, for example you cannot send HTTP traffic to the Paraxial.io backend for analysis.</p>
+<h2 id="free-tier-limits">Free Tier Limits</h2>
+<ol class="list-decimal pl-10 space-y-2">
+<li>Maximum of 1 Site.</li>
+<li>You cannot invite users to a Site.</li>
+<li>No Bot Defense</li>
+<li>Limit of 5 scans per site, per month.</li>
+<li>No automated network scanning (daily, weekly)</li>
+</ol>
+
+<p>If you have questions about Paraxial, need enterprise support, or would like to upgrade your plan, email <code>support@paraxial.io</code>.</p>
+<h2 id="1-create-your-paraxialio-account">1. Create your Paraxial.io account</h2>
+<p>Go to <a href="https://app.paraxial.io/">https://app.paraxial.io/</a> in your web browser. Create a new account. You will receive a confirmation email, use it to confirm your account and sign in. You have no sites at this point. </p>
+<h2 id="2-create-your-site">2. Create your site</h2>
+<p>Create a new site, but pick a different domain besides <code>sample_app</code>. Note that the <code>domain</code> is really treated as a comment by Paraxial.io, you can put any value you want here, it does not have to be a valid URL and no HTTP requests are ever sent to it.</p>
+<p><img alt="start0" src="../assets/start0.png" /></p>
+<p><img alt="start1" src="../assets/start1.png" /></p>
+<h2 id="3-sample-app-install">3. Sample App install</h2>
+<p>This section is to setup the reference sample app for the Ruby on Rails Tutorial (7th edition) by Michael Hartl. If you are installing Paraxial.io in your own project you can skip this section.</p>
+<p>GitHub - <a href="https://github.com/learnenough/rails_tutorial_sample_app_7th_ed">https://github.com/learnenough/rails_tutorial_sample_app_7th_ed</a></p>
+<pre><code>% git clone https://github.com/learnenough/rails_tutorial_sample_app_7th_ed 
+% cd rails_tutorial_sample_app_7th_ed/
+
+Gemfile
+% gem &quot;rails&quot;,                      &quot;7.0.4&quot; # bump to 7.0.5 for Apple M1 CPU
+% rm -rf Gemfile.lock 
+
+% bundle 
+% rails db:migrate
+% rails db:seed
+% rails server
+</code></pre>
+<h2 id="4-install-paraxialio">4. Install Paraxial.io</h2>
+<p>Paraxial.io for Ruby is hosted on RubyGems - <a href="https://rubygems.org/gems/paraxial">https://rubygems.org/gems/paraxial</a></p>
+<p>Current Ruby version: <code>1.4.5</code></p>
+<p><code>Gemfile</code></p>
+<pre><code>...
+gem 'paraxial', '~&gt; 1.4.5'
+
+...
+</code></pre>
+<p>Find your API key in "Site Settings". </p>
+<p><code>export PARAXIAL_API_KEY=your_key_here</code></p>
+<p>Create <code>.paraxial-rubocop.yml</code> and add:</p>
+<pre><code>% cat .paraxial-rubocop.yml
+require:
+- rubocop-erb
+</code></pre>
+<p>This is so Paraxial.io can scan ERB files for security issues.</p>
+<p>Start your application:</p>
+<p><code>rails s</code></p>
+<p>Then check your site page:</p>
+<p><img alt="start2" src="../assets/start2.png" /></p>
+<p>You should see data for libraries and open source licenses. </p>
+<p>Now run a scan:</p>
+<pre><code>% paraxial scan
+[Paraxial] v1.1.0 Scan starting...
+[Paraxial] .paraxial-rubocop.yml is valid, .erb files will be scanned.
+
+[Paraxial] Scan count: 11
+
+(Gemfile.lock) actionpack: Possible XSS via User Supplied Values to redirect_to - 7.0.5
+- Title: actionpack: Possible XSS via User Supplied Values to redirect_to
+- Installed Version: 7.0.5
+- Fixed Version: ~&gt; 6.1.7.4, &gt;= 7.0.5.1
+
+(Gemfile.lock) rubygem-actionpack: Possible XSS on translation helpers - 7.0.5
+- Title: rubygem-actionpack: Possible XSS on translation helpers
+- Installed Version: 7.0.5
+- Fixed Version: ~&gt; 7.0.8, &gt;= 7.0.8.1, &gt;= 7.1.3.1
+
+(Gemfile.lock) rubygem-actionpack: Missing security headers in Action Pack on non-HTML responses - 7.0.5
+- Title: rubygem-actionpack: Missing security headers in Action Pack on non-HTML responses
+- Installed Version: 7.0.5
+- Fixed Version: ~&gt; 6.1.7, &gt;= 6.1.7.8, ~&gt; 7.0.8, &gt;= 7.0.8.4, ~&gt; 7.1.3, &gt;= 7.1.3.4, &gt;= 7.2.0.beta2
+
+(Gemfile.lock) Arbitrary Code Execution Vulnerability in Trix Editor included in ActionText - 7.0.5
+- Title: Arbitrary Code Execution Vulnerability in Trix Editor included in ActionText
+- Installed Version: 7.0.5
+- Fixed Version: ~&gt; 7.0.8.3, &gt;= 7.1.3.3
+
+(Gemfile.lock) rubygem-activestorage: Possible Sensitive Session Information Leak in Active Storage - 7.0.5
+- Title: rubygem-activestorage: Possible Sensitive Session Information Leak in Active Storage
+- Installed Version: 7.0.5
+- Fixed Version: ~&gt; 6.1.7, &gt;= 6.1.7.7, &gt;= 7.0.8.1
+
+(Gemfile.lock) rubygem-activesupport: File Disclosure of Locally Encrypted Files - 7.0.5
+- Title: rubygem-activesupport: File Disclosure of Locally Encrypted Files
+- Installed Version: 7.0.5
+- Fixed Version: ~&gt; 6.1.7, &gt;= 6.1.7.5, &gt;= 7.0.7.1
+
+(Gemfile.lock) Bootstrap Cross-Site Scripting (XSS) vulnerability - 3.4.1
+- Title: Bootstrap Cross-Site Scripting (XSS) vulnerability
+- Installed Version: 3.4.1
+- Fixed Version: 
+
+(Gemfile.lock) rubygem-puma: HTTP request smuggling when parsing chunked transfer encoding bodies and zero-length content-length headers - 5.6.4
+- Title: rubygem-puma: HTTP request smuggling when parsing chunked transfer encoding bodies and zero-length content-length headers
+- Installed Version: 5.6.4
+- Fixed Version: ~&gt; 5.6.7, &gt;= 6.3.1
+
+(Gemfile.lock) rubygem-puma: HTTP request smuggling when parsing chunked Transfer-Encoding Bodies - 5.6.4
+- Title: rubygem-puma: HTTP request smuggling when parsing chunked Transfer-Encoding Bodies
+- Installed Version: 5.6.4
+- Fixed Version: ~&gt; 5.6.8, &gt;= 6.4.2
+
+(Gemfile.lock) rubygem-actionpack: Possible XSS on translation helpers - 7.0.5
+- Title: rubygem-actionpack: Possible XSS on translation helpers
+- Installed Version: 7.0.5
+- Fixed Version: 7.0.8.1, 7.1.3.1
+
+(Rubocop) CSRF, no protect_from_forgery in ApplicationController.
+- Path: app/controllers/application_controller.rb
+- Line: 1
+
+(Rubocop) `send` causes remote code execution if called on user input.
+- Path: app/models/user.rb
+- Line: 49
+
+[Paraxial] Scan UUID your_value_here
+[Paraxial] Scan URL your_url_here
+</code></pre>
+<p><img alt="start3" src="../assets/start3.png" /></p>
+<h2 id="5-github-app">5. GitHub App</h2>
+<p>The Paraxial.io App can be installed in an organization or individual account. </p>
+<p>GitHub Marketplace - <a href="https://github.com/marketplace/paraxial-io">https://github.com/marketplace/paraxial-io</a></p>
+<p><img alt="github_app" src="../../elixir/assets/gh4.png" /></p>
+<p>Note the install_id of <code>45554672</code>. Your value will be different. Make a note of this value somewhere, you will need it later.</p>
+<p>The Paraxial.io Github App is compatible with all CI/CD pipelines. We will be using a Github Action in this example. The following is required:</p>
+<ol>
+<li>Paraxial.io App Install ID (<code>45554672</code> in this example, your value will be different)</li>
+<li>Repo Owner</li>
+<li>Repo Name</li>
+<li>Pull Request number</li>
+</ol>
+<p>The dynamic values should be accessible in your CI environment. </p>
+<p><strong>Put the Paraxial.io API key in GitHub Actions Secrets</strong></p>
+<p>This secret key is found in "Site Settings" in the Paraxial.io web interface. </p>
+<p><img alt="github_app" src="../../elixir/assets/gh5.png" />
+<img alt="github_app" src="../../elixir/assets/gh6.png" /></p>
+<p><strong>Configure the GitHub Action</strong></p>
+<p>Before continuing, answer the following questions:</p>
+<p><br></p>
+<p>Q: What is the name of your repo's primary branch? (It is probably <code>master</code> or <code>main</code>) </p>
+<p>If your repo's branch is different, replace the "branches" value.</p>
+<p>Q: What is your Paraxial.io Github App Install ID? </p>
+<p>See the section above </p>
+<p><br></p>
+<p>GitHub Action: </p>
+<pre><code>% mkdir -p .github/workflows
+% touch .github/workflows/paraxial.yml
+</code></pre>
+<pre><code>name: Paraxial.io Application Secure
+
+on:
+  push:
+    branches: [ &quot;main&quot; ]
+  pull_request:
+    branches: [ &quot;main&quot; ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    name: Build and test
+    runs-on: ubuntu-latest
+
+    env:
+      PARAXIAL_API_KEY: ${{ secrets.PARAXIAL_API_KEY }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1 
+      with:
+        ruby-version: '3.1.2' 
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Get Github Repo Name
+      run: echo &quot;REPO_NAME=$(echo ${{ github.repository }} | cut -d'/' -f2)&quot; &gt;&gt; $GITHUB_ENV
+
+    - name: Paraxial.io Scan, pull request does not exists
+      if: &quot;${{ github.event.number == '' }}&quot;
+      run: |
+        paraxial scan
+
+    - name: Paraxial.io Scan, pull request exists 
+      if: &quot;${{ github.event.number != '' }}&quot;
+      run: |
+        paraxial scan --github_app \
+          --install_id YOUR_VALUE_HERE \
+          --repo_owner ${{ github.repository_owner }} \
+          --repo_name ${{ env.REPO_NAME }} \
+          --pr_number ${{ github.event.number }} \
+          --exit-code 
+</code></pre>
+<p>The flag <code>--exit-code</code> will cause the CI/CD run to fail if findings are detected by returning an exit code of 1. This can be used to block pull requests that contain security issues. </p>
+<p>Example of a successful run in GitHub actions:</p>
+<pre><code>Run paraxial scan --github_app \
+  paraxial scan --github_app \
+    --install_id 45233668 \
+    --repo_owner realcorvus \
+    --repo_name sample_app2 \
+    --pr_number 1
+
+  shell: /usr/bin/bash -e {0}
+  env:
+    PARAXIAL_API_KEY: ***
+    REPO_NAME: sample_app2
+[Paraxial] v1.1.0 Scan starting...
+[Paraxial] .paraxial-rubocop.yml is valid, .erb files will be scanned.
+
+[Paraxial] Scan count: 12
+
+(Gemfile.lock) actionpack: Possible XSS via User Supplied Values to redirect_to - 7.0.5
+- Title: actionpack: Possible XSS via User Supplied Values to redirect_to
+- Installed Version: 7.0.5
+- Fixed Version: ~&gt; 6.1.7.4, &gt;= 7.0.5.1
+
+(findings omitted for space)
+
+(Rubocop) `send` causes remote code execution if called on user input.
+- Path: app/models/user.rb
+- Line: 49
+
+[Paraxial] Scan UUID 5bc90764-4d20-4330-ad94-73246fcf4f51
+[Paraxial] Scan URL https://app.paraxial.io/site/sample_app/scans
+[Paraxial] GitHub hash: {
+  &quot;installation_id&quot;: 45233668,
+  &quot;repository_owner&quot;: &quot;realcorvus&quot;,
+  &quot;repository_name&quot;: &quot;sample_app2&quot;,
+  &quot;pull_request_number&quot;: 1,
+  &quot;scan_uuid&quot;: &quot;5bc90764-4d20-4330-ad94-73246fcf4f51&quot;,
+  &quot;api_key&quot;: &quot;REDACTED&quot;
+}
+[Paraxial] parax_uri response: {&quot;ok&quot;:&quot;Comment created successfully!&quot;}
+[Paraxial] https://github.com/realcorvus/sample_app2/pull/1
+</code></pre>
+<p>To use the Paraxial.io GitHub App, open a pull request:</p>
+<p><img alt="start4" src="../assets/start4.png" /></p>
+<h2 id="6-bot-defense-honeypot-form">6. Bot Defense, Honeypot Form</h2>
+<p>A simple and effective technique for stopping bots is to render a fake HTML form on your website, not visible to normal users, but only visible to bots. A real user will never submit this form, but bots often automatically submit HTML forms, making this an effective technique for banning malicious clients. With Paraxial.io:</p>
+<p><code>lib/middleware/ip_filter_middleware.rb</code></p>
+<pre><code>require 'paraxial'
+
+class IpFilterMiddleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    request = ActionDispatch::Request.new(env)
+    Paraxial.req_allowed?(request)
+
+    if env['paraxial.deny']
+      [403, {'Content-Type' =&gt; 'text/plain'}, ['Forbidden']]
+    else
+      @app.call(env)
+    end
+  end
+end
+</code></pre>
+<p>Ensure the middleware is loaded:</p>
+<p><code>config/application.rb</code></p>
+<pre><code>require_relative 'boot'
+require 'rails/all'
+
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+
+module SampleApp
+  class Application &lt; Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.0
+
+    # *** ADD THESE TWO LINES ***
+    Dir[Rails.root.join('lib', 'middleware', '*.{rb}')].each { |file| require file }
+    config.middleware.use IpFilterMiddleware
+  end
+end
+</code></pre>
+<p><code>Paraxial.req_allowed?</code> synchronizes with your backend, meaning any IPs placed on the ban list or allow list through the web interface will be stored locally, and used to determine the result of this function call. </p>
+<p>Now create the fake HTML form:</p>
+<pre><code>&lt;%= form_with url: '/customer_info', method: :post, html: { style: &quot;display:none !important&quot; } do |form| %&gt;
+  &lt;%= form.email_field :email, tabindex: -1 %&gt;
+  &lt;%= form.password_field :password, tabindex: -1 %&gt;
+  &lt;%= form.submit &quot;Submit&quot; %&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>The styling is important, this form will not be visible to normal users. </p>
+<p>Create a route for <code>/customer_info</code>: </p>
+<p><code>config/routes.rb</code></p>
+<pre><code>Rails.application.routes.draw do
+  post '/customer_info', to: 'static_pages#bot'
+end
+</code></pre>
+<p>Now create a matching controller action:</p>
+<p><code>app/controllers/static_pages_controller.rb</code></p>
+<pre><code>class StaticPagesController &lt; ApplicationController
+  ... 
+
+  def bot
+    # The second argument is the ban length, options are:
+    # :hour, :day, :week, and :infinity
+    Paraxial.honeypot_ban(request.remote_ip, :infinity)
+    render plain: &quot;ok&quot;
+  end
+end
+</code></pre>
+<p>To test if your setup is working, you can use "inspect element" on the page to view the form and delete the styling code, so you can submit it manually:</p>
+<p><img alt="start5" src="../assets/start5.png" /></p>
+<p><br></p>
+<p><img alt="start6" src="../assets/start6.png" /></p>
+<p>After submitting the form, refresh the page and you should be banned:</p>
+<p><img alt="start7" src="../assets/start7.png" /></p>
+<p>Then check your site page to view the ban:</p>
+<p><img alt="start8" src="../assets/start8.png" /></p>
+<h2 id="7-bot-defense-cloud-ips">7. Bot Defense, Cloud IPs</h2>
+<p>"Limit the number of login attempts for one IP address to 5 in a 30 second period" is a standard rule for many web applications, and makes sense from the perspective of a site owner dealing with malicious credential stuffing. With the rise of cloud computing, it has become much easier for an attacker to access thousands of different IP addresses, for free, to bypass IP based blocking.</p>
+<p><a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a> is a service that handling incoming traffic for a web application, such as HTTP requests, and then triggers some application functionality. The important point for attackers is that the gateway can be pointed at a victim web application, so that when the attacker sends traffic to the gateway, it is proxied through an AWS server, changing the IP address. David Yesland from Rhino Security describes this technique in a blog post, and introduces a Burp Suite extension which can be used to proxy traffic through AWS.</p>
+<p>Blog post - <a href="https://rhinosecuritylabs.com/aws/bypassing-ip-based-blocking-aws/">https://rhinosecuritylabs.com/aws/bypassing-ip-based-blocking-aws/</a></p>
+<p>In your own application, there may be endpoints where you expect bot traffic, for example API endpoints. For a web application with authentication pages that are only intended to be used by human users, blocking traffic from major cloud providers (AWS, GCP, Azure, etc) is an excellent security measure. </p>
+<p>The Paraxial.io Ruby agent stores a radix trie of these IPs locally, meaning the performance impact to check an incoming request is minimal. There is no round-trip to a server, just a fast lookup in the data structure.</p>
+<p>The below middleware will block cloud IP requests to the endpoints:</p>
+<pre><code>/login
+/signup
+</code></pre>
+<p>Requests from cloud IPs to all other endpoints will be allowed.</p>
+<p><code>lib/middleware/ip_filter_middleware.rb</code></p>
+<pre><code>require 'paraxial'
+
+class IpFilterMiddleware
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    request = ActionDispatch::Request.new(env)
+    Paraxial.block_cloud_ip(request, ['/login'])
+
+    if env['paraxial.deny']
+      [403, {'Content-Type' =&gt; 'text/plain'}, ['Forbidden']]
+    else
+      @app.call(env)
+    end
+  end
+end
+</code></pre>
+<h2 id="8-bot-defense-rate-limiting">8. Bot Defense, Rate Limiting</h2>
+<p>Paraxial.io is compatible with your existing Ruby rate limiting, for example rack-attack: <a href="https://github.com/rack/rack-attack">https://github.com/rack/rack-attack</a></p>
+<p><code>Gemfile</code></p>
+<pre><code>gem 'rack-attack', '~&gt; 6.7.0'
+</code></pre>
+<p><br></p>
+<p><code>config/initializers/rack_attack.rb</code></p>
+<pre><code># Use correct IP when behind a proxy
+class Rack::Attack
+  class Request &lt; ::Rack::Request
+    def remote_ip
+      @remote_ip ||= ActionDispatch::Request.new(env).remote_ip
+    end
+  end
+end
+
+# The bantime of 30 seconds is to save memory, once the ban is persisted to the
+# Paraxial.io backend there is no need to store it in the RackAttack cache. 
+Rack::Attack.blocklist('allow2ban login scrapers') do |req|
+  Rack::Attack::Allow2Ban.filter(req.remote_ip, maxretry: 5, findtime: 10, bantime: 30) do
+    req.path == '/login'
+  end
+end
+
+ActiveSupport::Notifications.subscribe(&quot;blocklist.rack_attack&quot;) do |name, _start, _finish, _iid, payload|
+  # Valid options for the second argument:
+  # :hour, :day, :week, and :infinity
+  Paraxial.ban_ip_msg(payload[:request].remote_ip, :hour, &quot;&gt; 5 requests to /login in 10 seconds&quot;)
+end
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../elixir/CHANGELOG/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Changelog">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Changelog
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../php_attack/" class="md-footer__link md-footer__link--next" aria-label="Next: PHPAttackMiddleware">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                PHPAttackMiddleware
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.expand", "navigation.top", "navigation.path", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

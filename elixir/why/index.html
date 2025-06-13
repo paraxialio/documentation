@@ -1,0 +1,1220 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.paraxial.io/elixir/why/">
+      
+      
+        <link rel="prev" href="../started_bot/">
+      
+      
+        <link rel="next" href="../code_scans/">
+      
+      
+      <link rel="icon" href="../../parax_fav.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Why Use Paraxial.io for Elixir - Paraxial.io Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#why-use-paraxialio-for-elixir" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Paraxial.io Documentation" class="md-header__button md-logo" aria-label="Paraxial.io Documentation" data-md-component="logo">
+      
+  <img src="../../paraxial.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Paraxial.io Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Why Use Paraxial.io for Elixir
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="violet"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Paraxial.io Documentation" class="md-nav__button md-logo" aria-label="Paraxial.io Documentation" data-md-component="logo">
+      
+  <img src="../../paraxial.png" alt="logo">
+
+    </a>
+    Paraxial.io Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Paraxial.io
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Paraxial.io
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../free_tier_faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Free Tier FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../slack_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Slack App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../network_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Network Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Elixir
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            Elixir
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../started_bot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started - Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Why Use Paraxial.io for Elixir
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Why Use Paraxial.io for Elixir
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lack-of-asset-management-leads-to-forgotten-app-being-compromised" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lack of asset management leads to forgotten app being compromised
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exposed-postgresql-endpoint-leads-to-data-breach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exposed PostgreSQL endpoint leads to data breach
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vulnerable-dependency-leads-to-remote-code-execution-rce" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vulnerable dependency leads to remote code execution (RCE)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remote-code-execution-via-erlangbinary_to_term" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remote code execution via :erlang.binary_to_term
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-accounts-compromised-via-credential-stuffing" class="md-nav__link">
+    <span class="md-ellipsis">
+      User accounts compromised via credential stuffing
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bot_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gitlab_app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitLab App
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Install
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started (Free Tier)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Ruby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Ruby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/php_attack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PHPAttackMiddleware
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/bot_defense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bot Defense
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/code_scans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Code Scans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ruby/CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Changelog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="why-use-paraxialio-for-elixir">Why Use Paraxial.io for Elixir</h1>
+<p><a href="https://paraxial.io/blog/why-vcs-miss">CVE-2025-32433, an Unauthenticated Remote Code Execution</a> in Erlang/OTP SSH, is a good example which demonstrates why the deep feature set of Paraxial.io is necessary to deal with real exploits becoming public:</p>
+<ul>
+<li>Static analysis of source code cannot detect the vulnerability</li>
+<li>Checking the project's lockfile will not detect it</li>
+</ul>
+<p>Most SAST/SCA tools stop their coverage there. With Paraxial.io:</p>
+<ul>
+<li>The App Audit feature shows if the Erlang SSH library is loaded</li>
+<li>The Network Scan feature can detect if the SSH service is exposed to the public internet</li>
+</ul>
+<p>Further reading:</p>
+<p><a href="https://paraxial.io/blog/erlang-ssh">What the Critical Erlang SSH Vulnerability Means for Elixir Developers</a></p>
+<p><a href="https://paraxial.io/blog/why-vcs-miss">Why VC Funded Security Firms Miss a Critical Vulnerability</a></p>
+<p>If your Elixir application is critical to your business and exposed to the public internet, it is recommended that you use all the Paraxial.io features. Below are additional scenarios that are highly likely to occur. </p>
+<hr />
+<p>An Elixir/Phoenix web application that is exposed to the public internet will be attacked. This is the reality of the modern web, any software you expose must have safeguards. Security is a large and complicated subject, if you are thinking "I don't even know where to start with security", do not worry, you have come to the right place. </p>
+<p>Consider a SaaS business, Black Cat Projects, which makes project management software. Below are examples of security incidents and how Paraxial.io would prevent each one:</p>
+<p><br></p>
+<h3 id="lack-of-asset-management-leads-to-forgotten-app-being-compromised">Lack of asset management leads to forgotten app being compromised</h3>
+<p>Black Cat Projects has two codebases: <code>havana</code>, the main application, and <code>ticker</code>, a microservice that pulls metrics from the database for a dashboard. The company focuses all the security efforts on <code>havana</code>, doing security reviews, having it pentested by a 3rd party firm, and keeping the software up to date. <code>ticker</code> is neglected, and it runs an outdated version of Elixir and Phoenix. </p>
+<p><code>ticker</code> contains a vulnerability that is trivial to exploit, a command injection that leads to full server compromise. One day an attacker notices this microservice, hacks into it, and gets SSH access to the EC2 host. The network is not segmented well, meaning the attacker is able to further compromise the production server, and steal the entire database, causing a breach. </p>
+<p><strong>How would Paraxial.io prevent this?</strong></p>
+<p>All your internet-facing web applications should be catalogued in Paraxial.io:</p>
+<p><img alt="overview" src="../assets/overview.png" /></p>
+<p>Paraxial.io would communicate that <code>ticker</code> was not being scanned for security issues. Even if nobody was logging into Paraxial.io on a frequent basis, the <a href="https://paraxial.io/blog/email-report">weekly email report</a> would show that an internet-facing project was not being checked for security issues. </p>
+<p><br></p>
+<h3 id="exposed-postgresql-endpoint-leads-to-data-breach">Exposed PostgreSQL endpoint leads to data breach</h3>
+<p>The recommended best practice for using a database in production is:</p>
+<p><code>User HTTP request ---&gt; App Server &lt;--- private connection ---&gt; Database server</code></p>
+<p>Where the database server is never exposed to the public internet. The benefit of this architecture is that even if there is a security problem with PostgreSQL, it will most likely require the database server to be public for an attacker to exploit it, so isolating the server reduces this risk.</p>
+<p>However, you can just run PostgreSQL on the application server. Now imagine a misconfiguration, where the PostgreSQL port 5432 is open to the public internet, and the db server has a weak password. A bad guy scans for the server, is able to brute force the password (it was something weak like <code>postgres</code>), and steals the entire database.</p>
+<p><strong>How would Paraxial.io prevent this?</strong></p>
+<p>The <a href="../../network_scans/">Network Scans</a> feature would detect port 5432 is open to the public internet. While the engineering team at Black Cat Projects thought this port was closed, it is always better to verify. Paraxial.io automatically scans the server daily or weekly, so if a port is opened by accident it will be detected. </p>
+<p><img src="../../assets/network_scans4.png" alt="network scans" width="450"/></p>
+<p>As you can see from the above scan, 5432 is closed, but having 3306 and 22 exposed to the public internet (with password authentication for SSH) is not ideal. </p>
+<p>For more information about server security, see the article <a href="https://paraxial.io/blog/kamal-security">Security Best Practices for Deploying Rails 8 on Linux with Kamal</a>, the guidance is applicable to Elixir as well. </p>
+<p><br></p>
+<h3 id="vulnerable-dependency-leads-to-remote-code-execution-rce">Vulnerable dependency leads to remote code execution (RCE)</h3>
+<p>Black Cat Projects decides to use GitHub's dependabot for dependency security in their Elixir projects. After all, it seems compatible: </p>
+<p><img src="../assets/deps0.png" alt="deps" width="800"/></p>
+<p>There is a critical vulnerability here that dependabot cannot detect because <a href="https://paraxial.io/vs-github">dependency graph does not support Elixir.</a></p>
+<p>In the above screenshot dependabot generated a lot of noise about non-security related upgrades, but misses the security issue:</p>
+<p><img src="../assets/deps1.png" alt="deps" width="800"/></p>
+<p>The paginator library is vulnerable to remote code execution (RCE), which is the worst case scenario for a web application. An attacker can use this vulnerability to get the equivalent of production SSH access. In a sense, dependabot was worse than nothing, because it gives a false sense of security while failing to notify users of critical security issues. </p>
+<p><strong>How would Paraxial.io prevent this?</strong></p>
+<p>Paraxial.io will only notify you when there is a security issue in your dependencies: </p>
+<p><img src="../assets/deps2.png" alt="deps" width="800"/></p>
+<p>Paraxial.io does not spam you with non-security related upgrade info the way dependabot does.</p>
+<p><br></p>
+<h3 id="remote-code-execution-via-erlangbinary_to_term">Remote code execution via :erlang.binary_to_term</h3>
+<p>Consider the following code:</p>
+<pre><code>defmodule CarafeWeb.PotionController do
+  use CarafeWeb, :controller
+
+    def vendors(conn, %{&quot;cursor&quot; =&gt; c}) do
+    cursor_bin = Base.decode64!(c)
+    cursor = :erlang.binary_to_term(cursor_bin, [:safe])
+    cursor_list = Enum.to_list(cursor)
+    first = Enum.min(cursor_list)
+    last = Enum.max(cursor_list)
+
+    vendors = Vendors.get_vendors()
+    rv = Enum.slice(vendors, cursor)
+    render(conn, &quot;vendors.html&quot;, vendors: rv, first: first, last: last)
+  end
+</code></pre>
+<p>What is the impact of this vulnerability? </p>
+<p>If you answered "remote code execution via <code>:erlang.binary_to_term</code>, you're correct! The <code>[:safe]</code> option is misleading, it only prevents the creation of new atoms, it does not stop the creation of executable terms. The impact of this vulnerability is that an attacker can execute shell commands on the server, leading to the equivalent of production SSH access, causing a data breach. </p>
+<p><strong>How would Paraxial.io prevent this?</strong></p>
+<p>The Paraxial.io GitHub App can run Sobelow, the static code analyzer, on each new pull request via CI/CD. On it's own the Sobelow finding does not explain how severe this problem is:</p>
+<pre><code>Confidence: high_confidence
+File: lib/carafe_web/controllers/potion_controller.ex
+Line: 29
+Type: Misc.BinToTerm: Unsafe `binary_to_term`
+Variable: cursor_bin
+</code></pre>
+<p>Paraxial.io gives a detailed explanation of the vulnerability, with advice on how to fix it:</p>
+<p><img src="../assets/github0.png" alt="deps" width="800"/></p>
+<p><img src="../assets/github1.png" alt="deps" width="800"/></p>
+<p>If you would like to learn more about this type of vulnerability, see <a href="https://paraxial.io/blog/elixir-rce">Elixir/Phoenix Security: Remote Code Execution and Serialisation.
+</a></p>
+<p><br></p>
+<h3 id="user-accounts-compromised-via-credential-stuffing">User accounts compromised via credential stuffing</h3>
+<p>Does your application have a login form, where users enter their email and password? If it does, you will have to deal with bots performing <a href="https://en.wikipedia.org/wiki/Credential_stuffing">credential stuffing</a> attacks. The idea is that most people re-use passwords across sites, and data breaches are common enough that user's old passwords can be found online. For example, a user signed up for a golf forum with the credentials <code>jack@example.com, golf1234567</code> several years ago. The forum was hacked, and that credential is now public. One day you receive thousands of login attempts per hour, where each attempt is for a different account. The bad guy is searching for users who re-used their password. </p>
+<p><strong>How would Paraxial.io prevent this?</strong></p>
+<p>The bot defense feature of Paraxial.io gives you several tools to stop this attack:</p>
+<ul>
+<li>
+<p>Rate limiting </p>
+</li>
+<li>
+<p>Banning malicious bots (sending requests for .php endpoints)</p>
+</li>
+<li>
+<p>Banning requests from data center IPs</p>
+</li>
+<li>
+<p>Honeypot HTML forms</p>
+</li>
+</ul>
+<p>See <a href="../started_bot/">Getting Started - Bot Defense</a> for more information. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../started_bot/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Getting Started - Bot Defense">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Getting Started - Bot Defense
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../code_scans/" class="md-footer__link md-footer__link--next" aria-label="Next: Code Scans">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Code Scans
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.expand", "navigation.top", "navigation.path", "search.highlight", "search.suggest", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
