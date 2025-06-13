@@ -101,7 +101,7 @@ Now it is time to install the Paraxial.io agent. The agent is written in Elixir,
 
 `mix.exs`
 ```
-{:paraxial, "~> 2.8.3"}
+{:paraxial, "~> 2.8.4"}
 ```
 
 ```

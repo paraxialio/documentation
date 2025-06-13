@@ -36,7 +36,7 @@ Install the Paraxial.io agent. The agent is written in Elixir, and installed as 
 
 `mix.exs`
 ```
-{:paraxial, "~> 2.8.3"}
+{:paraxial, "~> 2.8.4"}
 ```
 
 ```

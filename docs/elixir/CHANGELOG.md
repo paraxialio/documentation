@@ -2,6 +2,9 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
+## `2.8.4`
+- Fix a bug in dependency scanning where the finding was not valid.
+
 ## `2.8.3`
 - Fix a bug in dependency parsing that led to scan failure. 
 
