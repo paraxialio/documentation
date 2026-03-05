@@ -94,8 +94,9 @@ When running these commands watch out for errors and warnings. Common issues:
 1. Did you put the configuration in the `config/dev.exs` file?
 2. Is `PARAXIAL_API_KEY` set correctly? Sometimes there is a trailing newline and that breaks things.
 3. Is `paraxial_url` set to `"https://app.paraxial.io"`, with quotes?
-4. What mix environment is your application running in? Is it dev? 
+4. What mix environment is your application running in? Is it dev?
 5. If the API key is being read, but the scan upload fails, is it the correct value?
+6. Are you getting strange test errors? If `PARAXIAL_API_KEY` is set in your environment when running tests, the Paraxial agent will try to start. Make sure `PARAXIAL_API_KEY` is not set in your test environment.
 
 Customer support is available to help, email `support@paraxial.io`. 
 
