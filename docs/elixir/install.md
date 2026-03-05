@@ -52,7 +52,7 @@ config :paraxial,
   only: [
     %{path: "/users/log_in", method: "GET"},
     %{path: "/users/log_in", method: "POST"},
-    %{path: "/users/:id/settings", method: "POST"}
+    %{path: "/users/:id/settings", method: "GET"}
   ]
 ```
 
