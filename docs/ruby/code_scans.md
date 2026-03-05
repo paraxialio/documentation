@@ -24,7 +24,7 @@ def show
 end 
 ```
 
-Some cops are built into RuboCop, and others and written by Paraxial.io. The full list: 
+Some cops are built into RuboCop, and others are written by Paraxial.io. The full list: 
 
 - Paraxial/Constantize
 - Paraxial/CSRF

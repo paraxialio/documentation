@@ -147,7 +147,7 @@ jobs:
     - name: Get Github Repo Name
       run: echo "REPO_NAME=$(echo ${{ github.repository }} | cut -d'/' -f2)" >> $GITHUB_ENV
 
-    - name: Paraxial.io Scan, pull request does not exists
+    - name: Paraxial.io Scan, pull request does not exist
       if: "${{ github.event.number == '' }}"
       run: |
         mix paraxial.scan --sobelow-config --add-exit-code

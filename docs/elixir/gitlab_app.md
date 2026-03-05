@@ -6,7 +6,7 @@ Before starting with the GitLab App, ensure that Paraxial.io is setup. For examp
 
 `mix paraxial.scan`
 
-And view the results of this scan in the web interface. If you have not completed this setup, go the [getting started guide](./start.md) and complete that first before continuing. 
+And view the results of this scan in the web interface. If you have not completed this setup, go to the [getting started guide](./start.md) and complete that first before continuing. 
 
 If you can see recent events for "Vulnerabilities" in your site's overview page, then continue:
 

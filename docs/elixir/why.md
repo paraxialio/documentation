@@ -117,7 +117,7 @@ If you answered "remote code execution via `:erlang.binary_to_term`, you're corr
 
 **How would Paraxial.io prevent this?**
 
-The Paraxial.io GitHub App can run Sobelow, the static code analyzer, on each new pull request via CI/CD. On it's own the Sobelow finding does not explain how severe this problem is:
+The Paraxial.io GitHub App can run Sobelow, the static code analyzer, on each new pull request via CI/CD. On its own the Sobelow finding does not explain how severe this problem is:
 
 ```
 Confidence: high_confidence

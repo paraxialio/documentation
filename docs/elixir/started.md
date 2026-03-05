@@ -39,7 +39,7 @@ Confirm your email and create your first site:
 
 `Web facing` - Does this application face the public internet? This is a label set by the account owner, not detected by the agent. 
 
-`PII (Personal Identifiable Information)` - Does this application handle sensitive user data? This is a label set by the account owner, Paraxial.io cannot access PII. 
+`PII (Personally Identifiable Information)` - Does this application handle sensitive user data? This is a label set by the account owner, Paraxial.io cannot access PII. 
 
 
 ## Asset Management

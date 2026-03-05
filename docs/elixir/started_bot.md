@@ -12,7 +12,7 @@ You will setup the following:
 
 
 ## Create Account and Install Paraxial.io
-You can skip this section if you have already installed Paraxial.io by following the [Getting Started guide for Application Secure.](./started_bot.md)
+You can skip this section if you have already installed Paraxial.io by following the [Getting Started guide for Application Secure.](./started.md)
 
 Create your account here - [https://app.paraxial.io/users/register](https://app.paraxial.io/users/register)
 
@@ -28,7 +28,7 @@ Confirm your email and create your first site:
 
 `Web facing` - Does this application face the public internet? This is a label set by the account owner, not detected by the agent. 
 
-`PII (Personal Identifiable Information)` - Does this application handle sensitive user data? This is a label set by the account owner, Paraxial.io cannot access PII. 
+`PII (Personally Identifiable Information)` - Does this application handle sensitive user data? This is a label set by the account owner, Paraxial.io cannot access PII. 
 
 ---
 
@@ -262,7 +262,7 @@ Now you may want to use a custom plug with your own logic in Elixir code. For th
 
   {:error, "invalid length, valid options are :hour, :day, :week, :infinity"}
 
-  If you are using this function in a blocking content, call with Task.start, https://hexdocs.pm/elixir/1.12/Task.html#start/1
+  If you are using this function in a blocking context, call with Task.start, https://hexdocs.pm/elixir/1.12/Task.html#start/1
 
   - `ip` - Format should match conn.remote_ip, which is a tuple, 
            {192, 168, 1, 1} or {8193, 3512, 34211, 0, 0, 35374, 880, 29492}
