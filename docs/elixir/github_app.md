@@ -14,7 +14,7 @@ Note: You MUST use version `2.6.3` or later. Earlier versions do not support the
 
 `mix.exs`
 ```
-{:paraxial, "~> 2.8.4"}
+{:paraxial, "~> 2.9"}
 ```
 ```
 mix deps.get

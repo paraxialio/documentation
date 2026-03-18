@@ -2,6 +2,11 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
+## `2.9.0`
+- Added support for the req HTTP library
+- If your project has req installed, Paraxial.io will default to it
+- HTTPoision support still exists for backwards compatibility 
+
 ## `2.8.4`
 - Fix a bug in dependency scanning where the finding was not valid.
 
