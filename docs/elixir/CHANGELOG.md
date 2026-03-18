@@ -3,9 +3,10 @@
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
 ## `2.9.0`
-- Added support for the req HTTP library
-- If your project has req installed, Paraxial.io will default to it
-- HTTPoision support still exists for backwards compatibility 
+- Breaking change: if your Elixir project does not have an HTTP client, you must define one
+- In `mix.exs` deps set `{:req, "~> 0.5"} (recommended)` or `{:httpoison, ">= 1.0.0"} (legacy option)`
+- This release adds support for the req HTTP library
+- HTTPoision support available for backwards compatibility 
 
 ## `2.8.4`
 - Fix a bug in dependency scanning where the finding was not valid.
