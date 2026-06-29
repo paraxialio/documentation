@@ -2,6 +2,10 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
+## `2.10.0`
+- Fix for Hex version `2.5.0` crashing on security advisories
+- Remove `plug_cowboy` requirement, switch to `plug` only
+
 ## `2.9.0`
 - Breaking change: if your Elixir project does not have an HTTP client, you must define one
 - In `mix.exs` deps set `{:req, "~> 0.5"} (recommended)` or `{:httpoison, ">= 1.0.0"} (legacy option)`
