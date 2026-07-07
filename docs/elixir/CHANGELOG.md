@@ -3,6 +3,10 @@
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
 ## `2.10.0`
+- Fix for Hex version `2.5.0`, the `.paraxial-ignore-deps` file now works
+- For `.paraxial-ignore-deps`, add option to ignore by CVE
+
+## `2.10.0`
 - Fix for Hex version `2.5.0` crashing on security advisories
 - Remove `plug_cowboy` requirement, switch to `plug` only
 
