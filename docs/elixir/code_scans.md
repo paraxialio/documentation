@@ -1,5 +1,80 @@
 # Code Scans 
 
+## Ignore Dependencies
+
+This requires version `2.11.0` or later.
+
+To ignore dependency-related findings in Paraxial.io code scans, create the file `.paraxial-ignore-deps` in your project directory. Each line is one rule:
+
+- **Ignore an entire dependency** — the dependency name on its own line. All findings for that dependency are ignored, from both `mix deps.audit` and `mix hex.audit` (retired packages and security advisories).
+- **Ignore a specific vulnerability** — the dependency name, a space, then the advisory ID. Only that finding is ignored; other vulnerabilities in the same dependency are still reported.
+
+Blank lines and lines starting with `#` are skipped.
+
+Example:
+
+```
+% cat .paraxial-ignore-deps
+# Entire dependencies
+hackney
+jason
+remote_ip
+
+# Specific vulnerabilities
+postgrex CVE-2026-32687
+paginator GHSA-w98m-2xqg-9cvj
+```
+
+Notes on matching:
+
+- Matching is case-insensitive: `postgrex CVE-2026-32687`, `postgrex cve-2026-32687`, and `Postgrex cve-2026-32687` are all equivalent.
+- `CVE`, `GHSA`, and `EEF-CVE` advisory IDs are accepted.
+- Advisory aliases are matched. For example, `mix hex.audit` may report `EEF-CVE-2026-43969` with the alias `CVE-2026-43969` — writing either ID in `.paraxial-ignore-deps` ignores the finding.
+
+Sample output:
+
+```
+% mix paraxial.scan
+
+16:53:49.918 [info] [Paraxial] v2.11.0, scan starting
+16:53:49.920 [info] [Paraxial] API key found, scan results will be uploaded
+[Paraxial] .paraxial-ignore-deps read, the following will be ignored
+  Entire Dependencies:
+    - hackney
+    - jason
+    - remote_ip
+  Specific Vulnerabilities:
+    - postgrex CVE-2026-32687
+    - paginator GHSA-w98m-2xqg-9cvj
+...
+```
+
+### Invalid lines
+
+A line that does not match one of the two formats is skipped and a warning is printed. Common mistakes:
+
+```
+postgrex 0.19.3 CVE-2026-32687       <- version numbers are not allowed
+postgrex 0.19.3 - EEF-CVE-2026-32687 <- version numbers and dashes are not allowed
+EEF-CVE-2026-32687                   <- missing the dependency name
+CVE-2026-32687                       <- missing the dependency name
+```
+
+Each invalid line produces:
+
+```
+[warning] [Paraxial] .paraxial-ignore-deps invalid line, this will NOT be ignored: "postgrex 0.19.3 CVE-2026-32687"
+[warning] [Paraxial] Correct formats: "dep_name" (ignore entire dependency) or "dep_name CVE-2026-12345" (ignore one vulnerability)
+```
+
+You will also see a warning if a rule names a dependency that is not in your project's `mix.lock`, which usually means a typo:
+
+```
+[warning] [Paraxial] .paraxial-ignore-deps: hackny does not match any dependency in mix.lock
+```
+
+
+
 ## Flags
 
 Command line flags for `mix paraxial.scan`:
@@ -45,34 +120,3 @@ end
 ```
 
 This is to run Sobelow against all child applications. 
-
-# Ignore Dependencies
-
-This features requires Paraxial.io Elixir version `2.8.2` or later. 
-
-To ignore a dependency related finding in Paraxial.io code scans:
-
-1. Create the file `.paraxial-ignore-deps` in your project directory
-2. Add the name of each dependency you want to ignore on a new line
-
-Example:
-
-```
-% cat .paraxial-ignore-deps 
-hackney 
-jason
-remote_ip
-
-```
-
-Sample output:
-
-```
-% mix paraxial.scan        
-
-16:53:49.918 [info] [Paraxial] v2.8.3, scan starting
-16:53:49.920 [info] [Paraxial] API key found, scan results will be uploaded
-16:53:50.840 [info] [Paraxial] Ignoring dependencies listed in .paraxial-ignore-deps
-[Paraxial] .paraxial-ignore-deps list: ["hackney", "jason", "remote_ip"]
-...
-```
