@@ -2,7 +2,11 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
-## `2.10.0`
+## `2.11.1`
+-Support Hex 2.5.1 `ignore_advisories`/`ignore_retirements`
+
+
+## `2.11.0`
 - Fix for Hex version `2.5.0`, the `.paraxial-ignore-deps` file now works
 - For `.paraxial-ignore-deps`, add option to ignore by CVE
 
