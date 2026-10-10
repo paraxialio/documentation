@@ -2,9 +2,12 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
+## `2.12.0`
+- Check the Erlang/OTP version against the erlang/otp GitHub advisory database
+- For `.paraxial-ignore-deps`, support `erlang_otp` to ignore OTP advisories
+
 ## `2.11.1`
 -Support Hex 2.5.1 `ignore_advisories`/`ignore_retirements`
-
 
 ## `2.11.0`
 - Fix for Hex version `2.5.0`, the `.paraxial-ignore-deps` file now works
