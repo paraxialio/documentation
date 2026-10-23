@@ -28,6 +28,7 @@ Some cops are built into RuboCop, and others are written by Paraxial.io. The ful
 
 - Paraxial/Constantize
 - Paraxial/CSRF
+- Paraxial/DynamicRegexp
 - Paraxial/HTMLSafe
 - Paraxial/Raw
 - Paraxial/Send

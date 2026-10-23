@@ -2,6 +2,11 @@
 
 The Paraxial.io Ruby Agent is hosted on RubyGems - [https://rubygems.org/gems/paraxial](https://rubygems.org/gems/paraxial)
 
+## `1.5.0`
+- New cop `Paraxial/DynamicRegexp` finds regular expressions built from user input, such as `Regexp.new(params[:query])`. These reach memory safety bugs in Ruby's regexp engine, [fixed in Ruby 4.0.9, 3.4.12, and 3.3.13.](https://www.ruby-lang.org/en/news/2026/10/23/regexp-fixes-for-gitlab-cves/) To turn the cop off, set `Enabled: false` for `Paraxial/DynamicRegexp` in `.paraxial-rubocop.yml`, or add `# rubocop:disable Paraxial/DynamicRegexp` in code.
+- An interpolated regexp such as `/#{params[:query]}/` is a finding when the interpolated value is read from the request. Set `EnforcedStyle: all` on the cop to report every interpolation.
+- Code Scan findings are now reported at the severity of the cop that found them.
+
 ## `1.4.5`
 - If site is on the free tier, do not waste bandwidth with HTTP tick requests. 
 
