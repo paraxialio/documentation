@@ -2,9 +2,17 @@
 
 The Paraxial.io Elixir Agent is hosted on Hex - [https://hex.pm/packages/paraxial](https://hex.pm/packages/paraxial)
 
+## `2.13.0`
+- Check the Elixir version against the elixir-lang/elixir GitHub advisory database
+- For `.paraxial-ignore-deps`, support `elixir` to ignore Elixir advisories
+- Fetch Elixir advisories from Paraxial.io and send the Elixir version with the
+  scan, the same as for Erlang/OTP
+
 ## `2.12.0`
 - Check the Erlang/OTP version against the erlang/otp GitHub advisory database
 - For `.paraxial-ignore-deps`, support `erlang_otp` to ignore OTP advisories
+- Send the Erlang/OTP version with the scan, so Paraxial.io can check it against
+  advisory data that is refreshed continuously rather than once per agent release
 
 ## `2.11.1`
 -Support Hex 2.5.1 `ignore_advisories`/`ignore_retirements`
